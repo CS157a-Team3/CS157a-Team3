@@ -1,11 +1,28 @@
 <%@ page import="java.sql.*"%>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Flip Cart</title>
     </head>
   <body>
+      <div class="headerone"></div>
+      <nav>
+          <div class="navLinksWrapper">
+              <a href="#">About</a>
+              <a href="#">Contact</a>
+              <a href="#">Shop</a>
+              <a href="#">Category</a>
+              <a href="#"class="button">Sign&nbsp;Up</a>
+              <a href="#" class="button">Log&nbsp;In
+              </a>
+  
+              <input type="email" placeholder="youremail@gmail.com"/>
+  
+              <input type="password" placeholder="password"/>
+              </a>
+          </div>
+      </nav>
     <h1>Flip Cart Product List</h1>
-    
     <table border="1">
       <tr>
         <td>Product Id</td>
@@ -14,7 +31,7 @@
       </tr>
     <% 
      String db = "cs157a";
-        String user; // assumes database name is the same as username
+        String user; 
           user = "root";
         String password = "";
         try {
