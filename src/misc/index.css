@@ -107,29 +107,32 @@ nav {
     align-items: center;
     position: relative;
 
-.logo {
+.logo
+{
     font-family: var(--fontMono);
-    font-size: 1.5em;
+    font-size: 1.3em;
     text-transform: uppercase;
-    text-decoration: none;
-    margin-right: 70px;
+    text-align: center;
+    margin-right: 20px;
     color: var(--secondaryColor);
 &:hover {
      color: var(--primaryColorWhite);
  }
 }
 .navLinksWrapper {
+
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(9, 1fr);
     grid-gap: 1.3em;
     align-items: center;
 
-a {
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 1em;
-}
-}
+    a {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 1em;
+    }
+    }
+
 }
 main {
     display: flex;
@@ -141,13 +144,6 @@ main {
 .button {
     margin: 1em 0;
 }
-.sectionImg {
-    background: url("https://zdnet1.cbsistatic.com/hub/i/r/2019/04/17/1f68c3a6-495e-4325-bc16-cc531812f0ec/thumbnail/770x433/84ff4194826e8303efb771cd377a854f/chuwi-herobook-header.jpg") no-repeat;
-    background-size: cover;
-    background-position: center center;
-    width: 60%;
-    height: 450px;
-    grid-column: 1/7;
-}
+
 }
 
