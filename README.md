@@ -1,10 +1,5 @@
 # CS157a-Team3
 
-ERD
-
----
-[Project Presentation](files/ER Diagram.pdf "ER Diagram PDF")
-
 Table Schema  
 
 ---
