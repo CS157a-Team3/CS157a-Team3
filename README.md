@@ -3,7 +3,7 @@
 ERD
 
 ---
-[embed]http://example.com/file.pdf[/embed]
+[Project Presentation](files/project-presentation.pdf "Project Presentation PDF")
 
 Table Schema  
 
