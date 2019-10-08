@@ -3,7 +3,7 @@
 ERD
 
 ---
-[Project Presentation](files/project-presentation.pdf "Project Presentation PDF")
+[Project Presentation](/ER Diagram.pdf "ER Diagram PDF")
 
 Table Schema  
 
