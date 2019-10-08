@@ -1,0 +1,122 @@
+
+<html>
+<head>
+    <title>My website</title>
+    <link rel="stylesheet" type="text/css" href="shoppingcart.css" >
+</head>
+<header>
+    <div class="headerone"></div>
+    <nav>
+        <h3><a href="#" class="logo">
+            CS157a Team3</a></h3>
+        <div class="navLinksWrapper">
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Shop</a>
+            <a href="#">Category</a>
+            <a href="shoppingcart.html">cart&nbsp;&#x1F9FA</a>
+            <a href="#"class="button">Sign&nbsp;Up</a>
+            <a href="#" class="button">log&nbsp;in
+            </a>
+
+            <input type="email" placeholder="youremail@gmail.com"/>
+
+            <input type="password" placeholder="password"/>
+            </a>
+        </div>
+    </nav>
+
+    <div class="headerCopy">
+        <h1>E commerce web</h1>
+    </div>
+</header>
+
+<main>
+    <section>
+        <h2> &nbsp;This is the list of items</h2>
+    </section>
+
+    <section class = "section">
+
+
+        <h1 class = "list">Shopping Cart</h1>
+        <div class="shopping-cart">
+
+            <div class="column-labels">
+                <label class="product-image">Image</label>
+                <label class="product-details">Product</label>
+                <label class="product-price">Price</label>
+                <label class="product-quantity">Quantity</label>
+                <label class="product-removal">Remove</label>
+                <label class="product-line-price">Total</label>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="https://cdn.tmobile.com/content/dam/t-mobile/en-p/internet-devices/others/alcatel-3t-8-inch/Alcatel-3T-8-Metallic-Black-1-3x.jpg">
+                </div>
+                <div class="product-details">
+                    <div class="product-title">Category: eletric device </div>
+                    <div class="product-title">Tablet</div>
+                    <p class="product-description">tablet computer.</p>
+                </div>
+                <div class="product-price">60.99</div>
+                <div class="product-quantity">
+                    <input type="number" value="2" min="1">
+                </div>
+                <div class="product-removal">
+                    <button class="remove-product">
+                        Remove
+                    </button>
+                </div>
+                <div class="product-line-price">60.99</div>
+            </div>
+
+            <div class="product">
+                <div class="product-image">
+                    <img src="https://images.homedepot-static.com/productImages/84bca075-008f-46cc-9bec-6c85c293a0d7/svn/philips-led-bulbs-464867-64_1000.jpg">
+                </div>
+                <div class="product-details">
+                    <div class="product-title">Category: house equipment</div>
+                    <div class="product-title">Phlipse light bulb</div>
+                    <p class="product-description">This light bulb is smart light bulb to control remotely</p>
+                </div>
+                <div class="product-price">12.99</div>
+                <div class="product-quantity">
+                    <input type="number" value="1" min="1">
+                </div>
+                <div class="product-removal">
+                    <button class="remove-product">
+                        Remove
+                    </button>
+                </div>
+                <div class="product-line-price">12.99</div>
+            </div>
+
+            <div class="totals">
+                <div class="totals-item">
+                    <label>Subtotal</label>
+                    <div class="totals-value" id="cart-subtotal">71.97</div>
+                </div>
+                <div class="totals-item">
+                    <label>Tax (9%)</label>
+                    <div class="totals-value" id="cart-tax">3.60</div>
+                </div>
+                <div class="totals-item">
+                    <label>Shipping</label>
+                    <div class="totals-value" id="cart-shipping">10.00</div>
+                </div>
+                <div class="totals-item totals-item-total">
+                    <label>Grand Total</label>
+                    <div class="totals-value" id="cart-total">90.57</div>
+                </div>
+            </div>
+
+            <button class="checkout">Checkout</button>
+
+        </div>
+
+    </section>
+</main>
+</html>
+
