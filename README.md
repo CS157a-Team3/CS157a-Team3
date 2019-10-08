@@ -1,5 +1,10 @@
 # CS157a-Team3
 
+ERD
+
+---
+[embed]http://example.com/file.pdf[/embed]
+
 Table Schema  
 
 ---
