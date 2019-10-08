@@ -70,17 +70,6 @@ Wishlist:
 | UserId     | int(11) | No   | MUL | NULL    |                |
 +------------+---------+------+-----+---------+----------------+
 
-ProductOrder:
-+------------------+---------------+------+-----+---------+----------------+
-| Field            | Type          | Null | Key | Default | Extra          |
-+------------------+---------------+------+-----+---------+----------------+
-| POId             | int(11)       | NO   | PRI | NULL    | auto_increment |
-| UserId           | int(11)       | NO   | MUL | NULL    |                |
-| Subtotal         | decimal(18,2) | NO   |     | 0.00    |                |
-| BillingAddressId | int(11)       | NO   | MUL | NULL    |                |
-| PaymentId        | int(11)       | NO   | MUL | NULL    |                |
-+------------------+---------------+------+-----+---------+----------------+
-
 Category:
 +--------------+--------------+------+-----+---------+----------------+
 | Field        | Type         | Null | Key | Default | Extra          |
@@ -101,18 +90,54 @@ Product:
 | CategoryId  | int(11)       | NO   | MUL | NULL    |                |
 +-------------+---------------+------+-----+---------+----------------+
 
-ProductLine:
-+---------------+---------------+------+-----+---------+----------------+
-| Field         | Type          | Null | Key | Default | Extra          |
-+---------------+---------------+------+-----+---------+----------------+
-| ProductLineId | int(11)       | NO   | PRI | NULL    | auto_increment |
-| ListPrice     | decimal(18,2) | NO   |     | NULL    |                |
-| Discount      | decimal(4,2)  | NO   |     | 0.00    |                |
-| UnitPrice     | decimal(18,2) | NO   |     | NULL    |                |
-| Quantity      | int(18)       | NO   |     | NULL    |                |
-| Total         | decimal(18,2) | NO   |     | NULL    |                |
-| ProductId     | int(11)       | NO   | PRI | NULL    |                |
-| WishListId    | int(11)       | YES  | MUL | NULL    |                |
-| POId          | int(11)       | YES  | MUL | NULL    |                |
-| CartId        | int(11)       | YES  | MUL | NULL    |                |
-+---------------+---------------+------+-----+---------+----------------+
+Contains:
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| ListID    | int(11) | NO   | PRI | NULL    |       |
+| ProductID | int(11) | NO   | PRI | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+
+Edits:
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| UserID    | int(11) | NO   | PRI | NULL    |       |
+| ListID    | int(11) | NO   | PRI | NULL    |       |
+| ProductID | int(11) | YES  |     | NULL    |       |
+| Quantity  | int(11) | YES  |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+
+
+In:
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| CatergoryID | int(11) | NO   | PRI | NULL    |       |
+| ProductID   | int(11) | NO   | PRI | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+
+
+Has:
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| UserID    | int(11) | NO   | PRI | NULL    |       |
+| PaymentID | int(11) | NO   | PRI | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+
+Lists:
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| UserID    | int(11) | NO   | PRI | NULL    |       |
+| ProductID | int(11) | NO   | PRI | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+
+Ships To:
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| UserID    | int(11) | NO   | PRI | NULL    |       |
+| AddressID | int(11) | NO   | PRI | NULL    |       |
++-----------+---------+------+-----+---------+-------++
