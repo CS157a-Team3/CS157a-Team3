@@ -18,6 +18,7 @@ a {
 a:hover {
     color: var(--primaryColorWhite);
 }
+
 .button {
     display: inline-block;
     color: var(--primaryColorWhite);
@@ -28,7 +29,7 @@ a:hover {
     padding:  0.1em;
     cursor: pointer;
 }
-button:hover {
+.button:hover {
     color: var(--secondaryColor);
 }
 
@@ -41,9 +42,6 @@ input[type="email"] {
     background: rgba(255, 255, 255, 0.3);
     color: var(--primaryColorWhite);
 }
-input[type="email"]::placeholder {
-    color: var(--primaryColorWhite);
-}
 
 input[type="password"] {
     padding: 0.6em 1.2em;
@@ -54,20 +52,10 @@ input[type="password"] {
     color: var(--primaryColorWhite);
 
 }
-input[type="password"]::placeholder {
+input::placeholder {
     color: var(--primaryColorWhite);
 }
 
-
-body {
-    min-width: 400px;
-    margin: 0;
-    padding: 0;
-    font-family: var(--fontMono);
-    background-color: var(--primaryColorWhite);
-    display:flex;
-    flex-direction: column;
-}
 .new {
     color: var(--primaryColorWhite);
     background: #028250;
@@ -106,8 +94,24 @@ nav {
     grid-template-columns: 2fr 1fr;
     align-items: center;
     position: relative;
+}
 
-.logo
+nav .navLinksWrapper {
+
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-gap: 1.3em;
+    align-items: center;
+
+}
+
+nav .navLinksWrapper a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1em;
+}
+
+nav .logo
 {
     font-family: var(--fontMono);
     font-size: 1.3em;
@@ -117,31 +121,25 @@ nav {
     color: var(--secondaryColor);
 }
 
-.navLinksWrapper {
-
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-gap: 1.3em;
-    align-items: center;
-
-a {
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 1em;
-}
+nav logo:hover
+{
+    color: var(--primaryColorWhite);
 }
 
-}
 main {
     display: flex;
     flex-direction: column;
 }
-.section {
-    padding: 4em 0;
 
-.button {
+.section
+{
+    padding: 4em 0;
+}
+.section .button
+{
     margin: 1em 0;
 }
+
 
 
 /* Global "table" column settings */
@@ -200,15 +198,13 @@ label {
 
 
 /* Column headers */
-.column-labels {
-label {
+
+.column-labels label {
     padding-bottom: 15px;
     margin-bottom: 15px;
     border-bottom: 1px solid ;
 }
 
-
-}
 
 
 /* Product entries */
@@ -222,27 +218,23 @@ label {
 .product-image {
     margin-right: 40px;
     text-align: center;
-img {
+}
+.product-image img {
     width: 100px;
 }
-}
 
-.product-details {
-.product-title {
+.product-details .product-title {
     margin-right: 40px;
 
 }
-.product-description {
+.product-details .product-description {
     margin: 5px 20px 5px 0;
     line-height: 1.4em;
 }
-}
 
-.product-quantity {
-input {
+.product-quantity input {
     width: 40px;
 
-}
 }
 
 .remove-product {
