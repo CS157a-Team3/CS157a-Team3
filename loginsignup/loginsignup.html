@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My website</title>
+    <link rel="stylesheet" type="text/css" href="login.css" >
+
+
+</head>
+<header>
+    <div class="headerone"></div>
+    <nav>
+        <h3><a href="#" class="logo">
+            CS157a Team3</a></h3>
+        <div class="navLinksWrapper">
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Shop</a>
+            <a href="#">Category</a>
+            <a href="shoppingcart.html">cart&nbsp;&#x1F9FA</a>
+            <a href="#"class="button">Sign&nbsp;Up</a>
+            <a href="#" class="button">log&nbsp;in
+            </a>
+
+            <input type="email" placeholder="youremail@gmail.com"/>
+
+            <input type="password" placeholder="password"/>
+            </a>
+        </div>
+    </nav>
+
+    <div class="headerCopy">
+        <h1>E commerce web</h1>
+    </div>
+</header>
+
+<main>
+
+    <div class="form-modal">
+
+        <div class="form-toggle">
+            <button id="login-toggle" onclick="toggleLogin()">log in</button>
+            <button id="signup-toggle" onclick="toggleSignup()">sign up</button>
+        </div>
+
+        <div id="login-form">
+            <form>
+                <input type="text" placeholder="Enter email or username"/>
+                <input type="password" placeholder="Enter password"/>
+                <button type="button" class="btn login">log In</button>
+                <hr/>
+
+            </form>
+        </div>
+
+        <div id="signup-form">
+            <form method="post" action="signup.php">
+                <input type="email" placeholder="Enter your email"/>
+                <input type="userID" placeholder="Choose userID"/>
+                <input type="password" placeholder="Create password"/>
+                <input type="name" placeholder="Enter name"/>
+                <input type="phonenumber" placeholder="Enter phonenumber"/>
+
+                <button type="button" class="btn signup">create account</button>
+                <hr/>
+            </form>
+        </div>
+        <script src="login.js"></script>
+    </div>
+</main>
+
+</html>
