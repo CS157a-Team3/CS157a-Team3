@@ -14,10 +14,11 @@ h1 {
 
 a {
     color: Black;
-&:hover {
-     color: var(--primaryColorWhite);
- }
 }
+a:hover {
+    color: var(--primaryColorWhite);
+}
+
 .button {
     display: inline-block;
     color: var(--primaryColorWhite);
@@ -27,9 +28,9 @@ a {
     text-align: center;
     padding:  0.1em;
     cursor: pointer;
-&:hover {
-     color: var(--secondaryColor);
- }
+}
+.button:hover {
+    color: var(--secondaryColor);
 }
 
 input[type="email"] {
@@ -40,10 +41,6 @@ input[type="email"] {
     font-size: 1em;
     background: rgba(255, 255, 255, 0.3);
     color: var(--primaryColorWhite);
-
-&::placeholder {
-     color: var(--primaryColorWhite);
- }
 }
 
 input[type="password"] {
@@ -54,20 +51,11 @@ input[type="password"] {
     background: rgba(255, 255, 255, 0.3);
     color: var(--primaryColorWhite);
 
-&::placeholder {
-     color: var(--primaryColorWhite);
- }
+}
+input::placeholder {
+    color: var(--primaryColorWhite);
 }
 
-body {
-    min-width: 400px;
-    margin: 0;
-    padding: 0;
-    font-family: var(--fontMono);
-    background-color: var(--primaryColorWhite);
-    display:flex;
-    flex-direction: column;
-}
 .new {
     color: var(--primaryColorWhite);
     background: #028250;
@@ -106,8 +94,24 @@ nav {
     grid-template-columns: 2fr 1fr;
     align-items: center;
     position: relative;
+}
 
-.logo
+nav .navLinksWrapper {
+
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-gap: 1.3em;
+    align-items: center;
+
+}
+
+nav .navLinksWrapper a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1em;
+}
+
+nav .logo
 {
     font-family: var(--fontMono);
     font-size: 1.3em;
@@ -115,35 +119,25 @@ nav {
     text-align: center;
     margin-right: 20px;
     color: var(--secondaryColor);
-&:hover {
-     color: var(--primaryColorWhite);
- }
 }
-.navLinksWrapper {
 
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-gap: 1.3em;
-    align-items: center;
-
-    a {
-        text-decoration: none;
-        text-transform: uppercase;
-        font-size: 1em;
-    }
-    }
-
+nav logo:hover
+{
+    color: var(--primaryColorWhite);
 }
+
 main {
     display: flex;
     flex-direction: column;
 }
-.section {
-    padding: 4em 0;
 
-.button {
+.section
+{
+    padding: 4em 0;
+}
+.section .button
+{
     margin: 1em 0;
 }
 
-}
 
