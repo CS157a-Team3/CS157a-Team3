@@ -18,6 +18,7 @@ a {
 a:hover {
     color: var(--primaryColorWhite);
 }
+
 .button {
     display: inline-block;
     color: var(--primaryColorWhite);
@@ -28,7 +29,7 @@ a:hover {
     padding:  0.1em;
     cursor: pointer;
 }
-button:hover {
+.button:hover {
     color: var(--secondaryColor);
 }
 
@@ -41,9 +42,6 @@ input[type="email"] {
     background: rgba(255, 255, 255, 0.3);
     color: var(--primaryColorWhite);
 }
-input[type="email"]::placeholder {
-    color: var(--primaryColorWhite);
-}
 
 input[type="password"] {
     padding: 0.6em 1.2em;
@@ -54,20 +52,10 @@ input[type="password"] {
     color: var(--primaryColorWhite);
 
 }
-input[type="password"]::placeholder {
+input::placeholder {
     color: var(--primaryColorWhite);
 }
 
-
-body {
-    min-width: 400px;
-    margin: 0;
-    padding: 0;
-    font-family: var(--fontMono);
-    background-color: var(--primaryColorWhite);
-    display:flex;
-    flex-direction: column;
-}
 .new {
     color: var(--primaryColorWhite);
     background: #028250;
@@ -106,8 +94,24 @@ nav {
     grid-template-columns: 2fr 1fr;
     align-items: center;
     position: relative;
+}
 
-.logo
+nav .navLinksWrapper {
+
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-gap: 1.3em;
+    align-items: center;
+
+}
+
+nav .navLinksWrapper a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1em;
+}
+
+nav .logo
 {
     font-family: var(--fontMono);
     font-size: 1.3em;
@@ -117,35 +121,29 @@ nav {
     color: var(--secondaryColor);
 }
 
-.navLinksWrapper {
-
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-gap: 1.3em;
-    align-items: center;
-
-a {
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 1em;
-}
+nav logo:hover
+{
+    color: var(--primaryColorWhite);
 }
 
-}
 main {
     display: flex;
     flex-direction: column;
 }
-.section {
-    padding: 4em 0;
 
-.button {
+.section
+{
+    padding: 4em 0;
+}
+.section .button
+{
     margin: 1em 0;
 }
 
 
+
 /* Global "table" column settings */
-.product-image { float: left; width: 20%; }
+.product-image { float: left; width: 10%; }
 .product-details { float: left; width: 37%; }
 .product-price { float: left; width: 12%; }
 .product-quantity { float: left; width: 10%; }
@@ -200,15 +198,13 @@ label {
 
 
 /* Column headers */
-.column-labels {
-label {
+
+.column-labels label {
     padding-bottom: 15px;
     margin-bottom: 15px;
     border-bottom: 1px solid ;
 }
 
-
-}
 
 
 /* Product entries */
@@ -218,34 +214,35 @@ label {
     padding-bottom: 10px;
     margin-left: 40px;
     border-bottom: 1px solid;
+}
+.product .product-image {
 
-.product-image {
-    margin-right: 40px;
+    margin-right: 30px;
     text-align: center;
-img {
-    width: 100px;
-}
 }
 
-.product-details {
-.product-title {
-    margin-right: 40px;
 
+.product .product-details .product-title
+{
+    margin-right: 20px;
 }
-.product-description {
+
+.product .product-details .product-description {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
     margin: 5px 20px 5px 0;
     line-height: 1.4em;
 }
-}
 
-.product-quantity {
-input {
+
+.product .product-quantity input
+{
     width: 40px;
-
-}
 }
 
-.remove-product {
+.product .remove-product
+{
     border: 0;
     margin-right: 40px;
     padding: 4px 8px;
@@ -255,37 +252,38 @@ input {
     border-radius: 3px;
 }
 
-.remove-product:hover {
+.product .remove-product:hover
+{
     background-color: #a44;
 }
-}
 
-/* Totals section */
-.totals {
-.totals-item {
+
+.totals .totals-item {
     float: right;
     clear: both;
     width: 100%;
     margin-bottom: 10px;
+}
 
-label {
+.totals .totals-item label{
     float: left;
     clear: both;
     width: 79%;
     text-align: right;
 }
 
-.totals-value {
+.totals .totals-item .totals-value {
     float: right;
     width: 21%;
     text-align: right;
 }
-}
 
-.totals-item-total {
+.totals .totals-item-total
+{
     font-family: Helvetica;
 }
-}
+
+
 
 .checkout {
     float: right;
@@ -317,10 +315,14 @@ label {
 .product-image {
     float: right;
     width: auto;
-img {
+}
+.product-image img {
     margin: 0 0 10px 10px;
+    width:300px;
+    height:420px;
+
 }
-}
+
 
 .product-details {
     float: none;
@@ -335,10 +337,12 @@ img {
 
 .product-quantity {
     width: 100px;
-input {
+}
+
+.product-quantity input {
     margin-left: 20px;
 }
-}
+
 
 .product-quantity:before {
     content: 'x';
@@ -371,23 +375,30 @@ input {
     content: 'Item Total: $';
 }
 
-.totals {
-.totals-item {
-label {
+.product-line-price {
+    float: right;
+    clear: left;
+    width: auto;
+    margin-top: 10px;
+}
+
+.product .product-line-price:before {
+    content: 'Item Total: $';
+}
+
+
+
+.totals .totals-item label {
     width: 60%;
 }
 
-.totals-value {
+.totals .totals-item .totals-value {
     width: 40%;
 }
 
-}
-}
 
 .list{
     margin: 40px;
     padding-bottom: 4px;
-}
-
 }
 
