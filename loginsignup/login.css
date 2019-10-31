@@ -1,10 +1,6 @@
 
 
 
-*{
-    box-sizing: border-box;
-}
-
 :root {
     --fontMono: 'Times', monospace;
     --primaryColorBlue: #046BA5;
@@ -30,7 +26,6 @@ a:hover {
     color: var(--primaryColorWhite);
     font-size: 1em;
     text-transform: uppercase;
-    text-decoration: none;
     text-align: center;
     padding:  0.1em;
     cursor: pointer;
@@ -42,7 +37,7 @@ a:hover {
 input[type="email"] {
     padding: 0.6em 1.2em;
     border: 0;
-    min-width: 190px;
+    min-width: 130px;
     border-radius: 1px;
     font-size: 1em;
     background: rgba(255, 255, 255, 0.3);
@@ -52,7 +47,7 @@ input[type="email"] {
 input[type="password"] {
     padding: 0.6em 1.2em;
     border: 0;
-    min-width: 150px;
+    min-width: 130px;
     font-size: 1em;
     background: rgba(255, 255, 255, 0.3);
     color: var(--primaryColorWhite);
@@ -74,7 +69,6 @@ input::placeholder {
 
 header {
     position: relative;
-    right: 0px;
     display: grid;
     grid-template-columns: 60px 10px;
     grid-template-rows: 60px 60px;
@@ -106,7 +100,7 @@ nav .navLinksWrapper {
 
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    grid-gap: 1.3em;
+    grid-gap: 1.4em;
     align-items: center;
 
 }
@@ -134,15 +128,13 @@ nav logo:hover
 
 .section
 {
-    padding: 4em 0;
+    padding: 2em 0;
+
 }
 .section .button
 {
     margin: 1em 0;
 }
-
-
-
 
 
 .form-modal{
@@ -178,7 +170,7 @@ nav logo:hover
 }
 
 .form-modal .login:hover , .form-modal .signup:hover{
-    background:var(--secondaryColor);
+    background:black;
 }
 
 .form-toggle{
@@ -200,13 +192,11 @@ nav logo:hover
 
 #login-toggle{
     background:var(--primaryColorBlue);
-    color:#fff;
 }
-
 
 .form-modal form{
     position: relative;
-    width:90%;
+    width:80%;
     height:auto;
     left:50%;
     transform:translateX(-50%);
@@ -214,14 +204,19 @@ nav logo:hover
 
 #login-form , #signup-form{
     position:relative;
-    width:100%;
+    width:95%;
     height:auto;
+    color:Black;
     font-color: Black;
     padding-bottom:1em;
+
 }
 
 #signup-form{
-    display: none;
+
+    font-color: Black;
+    color:Black;
+
 }
 
 #login-form button , #signup-form button{
@@ -231,6 +226,7 @@ nav logo:hover
 }
 
 .form-modal input{
+    font-color: Black;
     position: relative;
     width:100%;
     font-size:1em;
