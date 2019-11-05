@@ -1,0 +1,260 @@
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+
+:root {
+  --fontMono: 'Times', monospace;
+  --primaryColorBlue: #046BA5;
+  --primaryColorlightBlue: #3689B7;
+  --primaryColorWhite: #fff;
+  --secondaryColor: #E8F908;
+}
+
+h1 {
+  margin: 0;
+  position: relative;
+  z-index: 3;
+}
+
+a {
+  color: Black;
+}
+a:hover {
+  color: var(--primaryColorWhite);
+}
+
+.button {
+  display: inline-block;
+  color: var(--primaryColorWhite);
+  font-size: 1em;
+  text-transform: uppercase;
+  text-align: center;
+  padding:  0.1em;
+  cursor: pointer;
+}
+.button:hover {
+  color: var(--secondaryColor);
+}
+
+input[type="email2"] {
+  padding: 0.6em 1.2em;
+  border: 0;
+  min-width: 130px;
+  border-radius: 1px;
+  font-size: 1em;
+  background-color: var(--primaryColorlightBlue);
+  color: var(--primaryColorWhite);
+}
+
+input[type="password2"] {
+  padding: 0.6em 1.2em;
+  border: 0;
+  min-width: 130px;
+  font-size: 1em;
+  background-color: var(--primaryColorlightBlue);
+  color: var(--primaryColorWhite);
+
+}
+input::placeholder {
+  color: var(--primaryColorWhite);
+}
+
+.new {
+  color: var(--primaryColorWhite);
+  background: var(--primaryColorBlue);
+  padding:  0.5em 1em;
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  width: fit-content;
+}
+
+.headerr {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px 30px;
+  grid-template-rows: 60px 60px;
+}
+.headerone {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--primaryColorBlue);
+  padding: 10px 10px;
+}
+.headerCopy {
+  grid-column: 2/6;
+  grid-row: 1/3;
+  color: var(--primaryColorWhite);
+}
+
+nav {
+  display: grid;
+  grid-column: 3/12;
+  grid-row: 1/3;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  position: relative;
+}
+
+nav .navLinksWrapper {
+
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 1.4em;
+  align-items: center;
+
+}
+
+nav .navLinksWrapper a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1em;
+}
+
+nav .logo
+{
+  font-family: var(--fontMono);
+  font-size: 1.3em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-right: 20px;
+  color: var(--secondaryColor);
+}
+
+nav logo:hover
+{
+  color: var(--primaryColorWhite);
+}
+
+.section
+{
+  padding: 2em 0;
+
+}
+.section .button
+{
+  margin: 1em 0;
+}
+
+
+
+
+
+
+
+
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login,
+.register {
+  width: 400px;
+}
+
+.login h2,
+.register h2 {
+  font-size: 45px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.login a {
+  text-align: center;
+}
+
+input[type='text'] {
+  background-color: #e6e6e6;
+  color: black;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: none;
+  width: 85%;
+  padding: 20px 30px;
+}
+
+input[type='number'] {
+  background-color: #e6e6e6;
+  color: black;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: none;
+  width: 85%;
+  padding: 20px 30px;
+}
+
+input[type='password'] {
+  background-color: #e6e6e6;
+  padding: 20px 30px;
+  color: black;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: none;
+  width: 85%;
+}
+
+input[type='submit'] {
+  padding: 15px 0px;
+  background-color: var(--primaryColorBlue);
+  color: #fff;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: none;
+  width: 100%;
+}
+
+.check {
+  font-size: 16px;
+}
+
+.linkpayment {
+  float: right;
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--primaryColorBlue);
+  font-size: 1em;
+  border: none;
+  fontWeight: 'bold';
+  padding: 5px 5px;
+}
+
+.linklogin {
+  float: left;
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--primaryColorBlue);
+  font-size: 1em;
+  border: none;
+  fontWeight: 'bold';
+  padding: 5px 5px;
+}
