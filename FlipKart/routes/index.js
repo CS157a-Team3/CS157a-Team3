@@ -29,8 +29,10 @@ module.exports = {
     })
   },
 
-  storeFrontPhones: (req, res) => {
-    let query = "SELECT * FROM product NATURAL JOIN inCat NATURAL JOIN category WHERE categoryName = 'Phones'";
+  storeFrontCat: (req, res) => {
+    let category = req.params.category;
+
+    let query = "SELECT * FROM product NATURAL JOIN inCat NATURAL JOIN category WHERE categoryName = '"+category+"'";
     db.query(query, (err, result) => {
       if(err) throw err;
       res.render('storefront', {

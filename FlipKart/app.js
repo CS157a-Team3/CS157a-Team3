@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.static(__dirname + '/public'));
 
-const {logIn, signUp, storeFront, storeFrontPhones, storeFrontCameras, newUser, existingUser, productPage} = require('./routes/index');
+const {logIn, signUp, storeFront, storeFrontCat, storeFrontCameras, newUser, existingUser, productPage} = require('./routes/index');
 // const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 const port = 5000;
 
@@ -41,7 +41,7 @@ app.use(express.static(__dirname + '/public'));
 
 // routes for the app
 app.get('/', storeFront);
-app.get('/phones', storeFrontPhones);
+app.get('/storefront/:category', storeFrontCat);
 app.get('/cameras', storeFrontCameras);
 app.get('/product/:id', productPage);
 app.get('/newUser', signUp)
