@@ -12,7 +12,7 @@ const fs = require('fs');
 
 module.exports = {
 
-  logIn: (req, res) => {
+  logIn: (req,  res) => {
     res.render('login', {message: "LogIn"});
   },
 
@@ -40,14 +40,10 @@ module.exports = {
     })
   },
 
-  storeFrontCameras: (req, res) => {
-    let query = "SELECT * FROM product NATURAL JOIN inCat NATURAL JOIN category WHERE categoryName = 'Cameras'";
-    db.query(query, (err, result) => {
-      if(err) throw err;
-      res.render('storefront', {
-        products: result});
-    })
+  cart: (req,res) => {
+    res.render('shoppingcart');
   },
+
 
   productPage: (req, res) => {
     let id = req.params.id;
@@ -92,11 +88,13 @@ module.exports = {
     let email = req.body.email;
     let password = req.body.password;
 
-    let authCheck = "SELECT Password FROM user WHERE Email = '"+email+"'";
+    let authCheck = "SELECT * FROM user WHERE Email = '"+email+"'";
     db.query(authCheck, function(error, results, fields)
     {
       if(results && results[0].Password == password)
       {
+        req.session.userId = results[0].UserID;
+        req.session.user = results[0];
         res.redirect('/')
         console.log("auth successful");
       }
@@ -106,5 +104,21 @@ module.exports = {
         res.render('login');
       }
     });
-  }
+  },
+
+  isAuth(req, res, next){
+    if (req.session.userId == null) {
+      res.redirect('login');
+    } else {
+      next();
+    }
+  },
+
+  notAuth(req, res, next){
+    if (req.session.userId == null) {
+      res.redirect('login');
+    } else {
+      next();
+    }
+  },
 }
