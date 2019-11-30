@@ -20,6 +20,45 @@ module.exports = {
     res.render('signup', {message: "Create User"});
   },
 
+  storeFront: (req, res) => {
+    let query = "SELECT * FROM product NATURAL JOIN inCat NATURAL JOIN category";
+    db.query(query, (err, result) => {
+      if(err) throw err;
+      res.render('storefront', {
+        products: result});
+    })
+  },
+
+  storeFrontPhones: (req, res) => {
+    let query = "SELECT * FROM product NATURAL JOIN inCat NATURAL JOIN category WHERE categoryName = 'Phones'";
+    db.query(query, (err, result) => {
+      if(err) throw err;
+      res.render('storefront', {
+        products: result});
+    })
+  },
+
+  storeFrontCameras: (req, res) => {
+    let query = "SELECT * FROM product NATURAL JOIN inCat NATURAL JOIN category WHERE categoryName = 'Cameras'";
+    db.query(query, (err, result) => {
+      if(err) throw err;
+      res.render('storefront', {
+        products: result});
+    })
+  },
+
+  productPage: (req, res) => {
+    let id = req.params.id;
+    let query = "SELECT * FROM product WHERE productId = '"+id+"'";
+    db.query(query, (err, result) =>{
+      if(err) throw err;
+      res.render('productpage', {
+        product: result});
+    })
+  },
+  
+
+
   newUser: (req, res) => {
     let name = req.body.name;
     let email = req.body.email;
@@ -41,7 +80,7 @@ module.exports = {
         db.query(addQuery, (err, result) => {
           if (err) throw err;
           console.log("added new user");
-          res.render('login');
+          res.redirect('/');
       });
       }
     });
@@ -56,6 +95,7 @@ module.exports = {
     {
       if(results && results[0].Password == password)
       {
+        res.redirect('/')
         console.log("auth successful");
       }
       else
@@ -63,16 +103,6 @@ module.exports = {
         console.log("auth unsuccessful");
         res.render('login');
       }
-
-      // if(results && results == password)
-      // {
-      //   console.log("auth successful");
-      // }
-      // else
-      // {
-      //   console.log("auth unsuccessful");
-      //   res.render('login');
-      // }
     });
   }
 }

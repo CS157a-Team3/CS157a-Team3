@@ -273,3 +273,11 @@ button:hover {
   }
 }
 
+.mainStore{
+  padding:75px 25px 25px;
+}
+
+.card-img{
+  max-width: 372px;
+  max-height: 472px
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../libs/mdb/mdb.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/main.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+            <div class="container">
+        
+            <!-- Brand -->
+            <a class="navbar-brand waves-effect" href="/">
+                <strong class="blue-text">FlipKartt</strong>
+            </a>
+        
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
+                <!-- Left -->
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link waves-effect" href="/">Home</a>
+                </li>
+                </ul>
+        
+                <!-- Right -->
+                <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                    <a class="nav-link waves-effect">
+                    <span class="badge red z-depth-1 mr-1"> 1 </span>
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect" href="#">My Account</a>
+                </li>
+                </ul>
+        
+            </div>
+        
+            </div>
+        </nav>
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <img src="../images/<%= product[0].Image %>" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+
+            <p class="lead">
+              <span>$<%=product[0].Price%></span>
+            </p>
+
+            <p class="lead font-weight-bold"><%= product[0].Name%></p>
+
+            <p><%=product[0].Description%></p>
+
+            <form class="d-flex justify-content-left">
+              <!-- Default input -->
+              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+
+            </form>
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+    </div>
+  </main>
+    <script src="../libs/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../libs/bootstrap/js/popper.js"></script>
+    <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../lib/mdb/mdb.min.js"></script>
+    
+    </body>
+</html>
+    

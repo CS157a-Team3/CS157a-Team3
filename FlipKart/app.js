@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.static(__dirname + '/public'));
 
-const {logIn, signUp, newUser, existingUser} = require('./routes/index');
+const {logIn, signUp, storeFront, storeFrontPhones, storeFrontCameras, newUser, existingUser, productPage} = require('./routes/index');
 // const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 const port = 5000;
 
@@ -40,7 +40,10 @@ app.use(fileUpload()); // configure fileupload
 app.use(express.static(__dirname + '/public'));
 
 // routes for the app
-app.get('/', logIn);
+app.get('/', storeFront);
+app.get('/phones', storeFrontPhones);
+app.get('/cameras', storeFrontCameras);
+app.get('/product/:id', productPage);
 app.get('/newUser', signUp)
 app.post('/newUser', newUser);
 app.get('/logIn', logIn);
