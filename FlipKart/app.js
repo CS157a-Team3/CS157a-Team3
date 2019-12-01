@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 const app = express();
 
 
-const {logIn, signUp, storeFront, storeFrontCat, cart, newUser, existingUser, productPage} = require('./routes/index');
+const {logIn, signUp, storeFront, storeFrontCat, cart, newUser, existingUser, productPage, addToCart} = require('./routes/index');
 // const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 const port = 5000;
 
@@ -57,6 +57,7 @@ app.get('/', storeFront);
 app.get('/storefront/:category', storeFrontCat);
 app.get('/cart', cart);
 app.get('/product/:id', productPage);
+app.post('/product/:id', addToCart);
 app.get('/newUser', signUp)
 app.post('/newUser', newUser);
 app.get('/logIn', logIn);

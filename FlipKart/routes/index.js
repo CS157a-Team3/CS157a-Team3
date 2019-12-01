@@ -41,7 +41,15 @@ module.exports = {
   },
 
   cart: (req,res) => {
-    res.render('shoppingcart');
+    let userID = res.locals.user.UserID;
+
+    let query = "SELECT * FROM product WHERE productID IN (SELECT productID FROM edits NATURAL JOIN inCart WHERE userID = '"+userID+"')"
+
+    db.query(query, (err, result) => {
+      if(err) throw err;
+      res.render('shoppingcart', {
+        products: result});
+    })
   },
 
 
@@ -55,7 +63,22 @@ module.exports = {
     })
   },
   
-
+  addToCart: (req, res) => {
+    let productID = req.params.id;
+    let userID = res.locals.user.UserID;
+    let cartQuery = "SELECT cartID FROM edits WHERE UserID = '"+userID+"'";
+    db.query(cartQuery, (err, result) =>{ 
+      if(err) throw err;
+      let cartID = result[0].cartID;
+      console.log(cartID);
+      let insertQuery = "INSERT INTO inCart (cartID, productID, quantity) VALUES ('"+cartID+"', '"+productID+"', 1)";
+      db.query(insertQuery, (err, result) => {
+        if (err) throw err;
+        console.log("added to cart");
+      })
+    })
+     
+  },
 
   newUser: (req, res) => {
     let name = req.body.name;
