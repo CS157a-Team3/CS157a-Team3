@@ -9,6 +9,7 @@
 // });
 
 const fs = require('fs');
+const uuid = require("uuid");
 
 module.exports = {
 
@@ -52,6 +53,22 @@ module.exports = {
     })
   },
 
+  removeItem: (req, res) => {
+    let userID = res.locals.user.UserID;
+    let productID = req.body.productID;
+
+    let cartQuery = "SELECT cartID FROM edits WHERE UserID = '"+userID+"'";
+    db.query(cartQuery, (err, result) =>{
+      if(err) throw err;
+      let cartID = result[0].cartID;
+      let deleteQuery = "DELETE FROM inCart WHERE cartID = '"+cartID+"' AND productID = '"+productID+"'";
+      db.query(deleteQuery, (err, result) =>{
+        if (err) throw err;
+        res.redirect('/cart');
+      })
+    })
+  },
+
 
   productPage: (req, res) => {
     let id = req.params.id;
@@ -75,10 +92,11 @@ module.exports = {
       db.query(insertQuery, (err, result) => {
         if (err) throw err;
         console.log("added to cart");
+        res.redirect("/product/" + productID)
       })
     })
-     
   },
+
 
   newUser: (req, res) => {
     let name = req.body.name;
@@ -97,11 +115,22 @@ module.exports = {
       }
       else
       {
-        let addQuery = "INSERT INTO user (UserID, Name, Email, PhoneNumber, Password) VALUES (UUID(), '" + name + "', '" + email + "', '" + phonenumber + "', '" + password + "')";
+        let useruuid = uuid.v4();
+        let addQuery = "INSERT INTO user (UserID, Name, Email, PhoneNumber, Password) VALUES ('"+useruuid+"', '" + name + "', '" + email + "', '" + phonenumber + "', '" + password + "')";
         db.query(addQuery, (err, result) => {
           if (err) throw err;
-          console.log("added new user");
-          res.redirect('/');
+
+          let cartUUID = uuid.v4();
+          let newCartQ = "INSERT INTO carts (cartID) VALUE ('"+cartUUID+"')";
+          db.query(newCartQ, (err, result) => {
+            if(err) throw err;
+            let cartToUser = "INSERT INTO edits (userID, cartID) VALUE ('"+useruuid+"', '"+cartUUID+"')";
+            db.query(cartToUser, (err, result) => {
+              if(err) throw err;
+              console.log("added new user");
+              res.redirect('/logIn');
+            });
+          });
       });
       }
     });
@@ -143,5 +172,11 @@ module.exports = {
     } else {
       next();
     }
+  },
+
+  logOut(req, res){
+    req.session.destroy(function(err) {
+      res.redirect('/logIn');
+    })
   },
 }

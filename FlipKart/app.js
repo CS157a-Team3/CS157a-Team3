@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 const app = express();
 
 
-const {logIn, signUp, storeFront, storeFrontCat, cart, newUser, existingUser, productPage, addToCart} = require('./routes/index');
+const {logIn, signUp, storeFront, storeFrontCat, cart, newUser, existingUser, productPage, addToCart, removeItem, logOut} = require('./routes/index');
 // const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
 const port = 5000;
 
@@ -56,12 +56,14 @@ app.use(function(req, res, next) {
 app.get('/', storeFront);
 app.get('/storefront/:category', storeFrontCat);
 app.get('/cart', cart);
+app.post('/cart', removeItem);
 app.get('/product/:id', productPage);
 app.post('/product/:id', addToCart);
 app.get('/newUser', signUp)
 app.post('/newUser', newUser);
 app.get('/logIn', logIn);
-app.post('/logIn', existingUser)
+app.post('/logIn', existingUser);
+app.get('/logOut', logOut);
 
 
 // set the app to listen on the port

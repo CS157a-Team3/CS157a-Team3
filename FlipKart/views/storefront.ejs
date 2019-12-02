@@ -33,13 +33,17 @@
             <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item">
                 <a class="nav-link waves-effect" href="/cart">
-                <span class="badge red z-depth-1 mr-1"> 1 </span>
                 <i class="fas fa-shopping-cart"></i>
                 <span class="clearfix d-none d-sm-inline-block"> Cart </span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link waves-effect" href="#"><%=user.Name%></a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"" href="#"><%=user.Name%></a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/logOut">Log Out</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Separated link</a>
+                </div>
             </li>
             </ul>
     
