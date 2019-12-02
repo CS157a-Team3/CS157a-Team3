@@ -99,7 +99,7 @@
                             <strong><%=product.Name%></strong>
                         </h5>
                         </td>
-                        <%total = total + product.Price%>
+                        <%total = total + product.Price * product.quantity%>
                         <td>$<%=product.Price%></td>
                         <td class="text-center text-md-left">
                         <span class="qty"><%=product.quantity%> </span>

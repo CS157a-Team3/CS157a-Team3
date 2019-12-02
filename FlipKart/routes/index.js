@@ -49,7 +49,6 @@ module.exports = {
     
     db.query(query, (err, result) => {
       if(err) throw err;
-      console.log(result);
       res.render('shoppingcart', {
         products: result});
     })
