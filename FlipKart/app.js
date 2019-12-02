@@ -53,7 +53,7 @@ app.use(function(req, res, next) {
 });
 
 // routes for the app
-app.get('/', storeFront);
+app.get('/storefront', storeFront);
 app.get('/storefront/:category', storeFrontCat);
 app.get('/cart', cart);
 app.post('/cart', removeItem);
@@ -61,8 +61,8 @@ app.get('/product/:id', productPage);
 app.post('/product/:id', addToCart);
 app.get('/newUser', signUp)
 app.post('/newUser', newUser);
-app.get('/logIn', logIn);
-app.post('/logIn', existingUser);
+app.get('/', logIn);
+app.post('/', existingUser);
 app.get('/logOut', logOut);
 
 

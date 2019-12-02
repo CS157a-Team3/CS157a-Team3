@@ -15,7 +15,7 @@
         <div class="container">
     
         <!-- Brand -->
-        <a class="navbar-brand waves-effect" href="/">
+        <a class="navbar-brand waves-effect" href="/storefront">
             <strong class="blue-text">FlipKartt</strong>
         </a>
     
@@ -25,7 +25,7 @@
             <!-- Left -->
             <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link waves-effect" href="/">Home</a>
+                <a class="nav-link waves-effect" href="/storefront">Home</a>
             </li>
             </ul>
     
@@ -37,8 +37,13 @@
                 <span class="clearfix d-none d-sm-inline-block"> Cart </span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link waves-effect" href="#"><%=user.Name%></a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"" href="#"><%=user.Name%></a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/logOut">Log Out</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Separated link</a>
+                </div>
             </li>
             </ul>
     
@@ -76,7 +81,7 @@
 
             <form class="d-flex justify-content-left" action = "" method = "POST">
               <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+              <input type="number" name="qty" value="1" aria-label="Search" class="form-control" style="width: 100px">
               <button class="btn btn-primary btn-md my-0 p" type="submit" name="productID" value="<%=product[0].productID%>">Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>

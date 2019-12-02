@@ -16,7 +16,7 @@
             <div class="container">
         
             <!-- Brand -->
-            <a class="navbar-brand waves-effect" href="/">
+            <a class="navbar-brand waves-effect" href="/storefront">
                 <strong class="blue-text">FlipKartt</strong>
             </a>
         
@@ -26,7 +26,7 @@
                 <!-- Left -->
                 <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link waves-effect" href="/">Home</a>
+                    <a class="nav-link waves-effect" href="/storefront">Home</a>
                 </li>
                 </ul>
         
@@ -38,8 +38,13 @@
                     <span class="clearfix d-none d-sm-inline-block"> Cart </span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link waves-effect" href="#"><%=user.Name%></a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"" href="#"><%=user.Name%></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/logOut">Log Out</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
                 </li>
                 </ul>
         
@@ -83,7 +88,7 @@
     
                 <!-- Table body -->
                 <tbody>
-    
+                    <% var total = 0 %>
                     <% products.forEach((product, index) => { %>
                     <tr>
                         <th scope="row">
@@ -94,10 +99,10 @@
                             <strong><%=product.Name%></strong>
                         </h5>
                         </td>
-
+                        <%total = total + product.Price%>
                         <td>$<%=product.Price%></td>
                         <td class="text-center text-md-left">
-                        <span class="qty">1 </span>
+                        <span class="qty"><%=product.quantity%> </span>
                         <div class="btn-group radio-group ml-2" data-toggle="buttons">
                             <label class="btn btn-sm btn-primary btn-rounded">
                             <input type="radio" name="options" id="option1">&mdash;
@@ -108,7 +113,7 @@
                         </div>
                         </td>
                         <td class="font-weight-bold">
-                        <strong>$800</strong>
+                        <strong>$<%=product.Price * product.quantity%></strong>
                         </td>
                         <td>
                         <form action = "" method = "POST">
@@ -129,7 +134,7 @@
                     </td>
                     <td class="text-right">
                       <h4 class="mt-2">
-                        <strong>$2600</strong>
+                        <strong>$<%=total%></strong>
                       </h4>
                     </td>
                     <td colspan="3" class="text-right">

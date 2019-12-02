@@ -43,11 +43,13 @@ module.exports = {
 
   cart: (req,res) => {
     let userID = res.locals.user.UserID;
-
-    let query = "SELECT * FROM product WHERE productID IN (SELECT productID FROM edits NATURAL JOIN inCart WHERE userID = '"+userID+"')"
-
+    console.log("user id: " + userID);
+    let query = "SELECT * FROM edits NATURAL JOIN inCart NATURAL JOIN product WHERE UserID = '"+userID+"'";
+    // let query = "SELECT * FROM product NATURAL JOIN inCart WHERE productID IN (SELECT productID FROM edits NATURAL JOIN inCart WHERE userID = '"+userID+"')"
+    
     db.query(query, (err, result) => {
       if(err) throw err;
+      console.log(result);
       res.render('shoppingcart', {
         products: result});
     })
@@ -82,13 +84,15 @@ module.exports = {
   
   addToCart: (req, res) => {
     let productID = req.params.id;
+    let qty = req.body.qty;
+    console.log(qty);
     let userID = res.locals.user.UserID;
     let cartQuery = "SELECT cartID FROM edits WHERE UserID = '"+userID+"'";
     db.query(cartQuery, (err, result) =>{ 
       if(err) throw err;
       let cartID = result[0].cartID;
       console.log(cartID);
-      let insertQuery = "INSERT INTO inCart (cartID, productID, quantity) VALUES ('"+cartID+"', '"+productID+"', 1)";
+      let insertQuery = "INSERT INTO inCart (cartID, productID, quantity) VALUES ('"+cartID+"', '"+productID+"', '"+qty+"')";
       db.query(insertQuery, (err, result) => {
         if (err) throw err;
         console.log("added to cart");
@@ -128,7 +132,7 @@ module.exports = {
             db.query(cartToUser, (err, result) => {
               if(err) throw err;
               console.log("added new user");
-              res.redirect('/logIn');
+              res.redirect('/');
             });
           });
       });
@@ -147,7 +151,7 @@ module.exports = {
       {
         req.session.userId = results[0].UserID;
         req.session.user = results[0];
-        res.redirect('/')
+        res.redirect('/storefront')
         console.log("auth successful");
       }
       else
@@ -176,7 +180,7 @@ module.exports = {
 
   logOut(req, res){
     req.session.destroy(function(err) {
-      res.redirect('/logIn');
+      res.redirect('/');
     })
   },
 }
