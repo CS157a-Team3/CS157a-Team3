@@ -81,6 +81,40 @@ module.exports = {
       });
   },
 
+  checkout(req, res){
+    let addressID = uuid.v4();
+    let userID = res.locals.user.UserID;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let email = req.body.email;
+    let address = req.body.address;
+    let city = req.body.city;
+    let state = req.body.state;
+    let zip = req.body.zip;
+    let cardName = req.body.cardName;
+    let cardNum = req.body.cardNum;
+    let expDate = req.body.expDate;
+    let cvv = req.body.cvv;
+
+    let addAddress = "INSERT INTO address (addressID, address, state, city, zip, firstName, lastName) VALUES ('"+addressID+"', '"+address+"', '"+state+"', '"+city+"', '"+zip+"', '"+firstName+"', '"+lastName+"')";
+    db.query(addAddress, (err, result) =>{
+      if(err) throw err;
+    })
+    let connectAddress = "INSERT INTO shipsTo (userID, address) VALUES ('"+userID+"', '"+addressID+"')";
+    db.query(connectAddress, (err, result) =>{
+      if(err) throw err;
+    })
+    let addCard = "INSERT INTO creditCard (cardNum, cardName, CVV, expDate) VALUES ('"+cardNum+"', '"+cardName+"', '"+cvv+"', '"+expDate+"')";
+    db.query(addCard, (err, results) =>{
+      if(err) throw err;
+    })
+    let connectCard = "INSERT INTO paysWith (userID, cardNum) VALUES ('"+userID+"', '"+cardNum+"')";
+    db.query(connectCard, (err, results) =>{
+      if(err) throw err;
+    })
+    res.redirect("/storefront");
+  },
+
   productPage: (req, res) => {
     let id = req.params.id;
     let query = "SELECT * FROM product WHERE productId = '"+id+"'";
