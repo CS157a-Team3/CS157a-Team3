@@ -8,5 +8,3 @@
 4. Configure the db const. in app.js to access your MySQL server
 5. Start app.js using 'nodemon app.js'
 6. Navigate to localhost:5000
-
-**Note:** Steps 4-6 should be run in seperate terminal windows.
