@@ -70,6 +70,16 @@ module.exports = {
     })
   },
 
+  checkoutPage(req, res){
+    let userID = res.locals.user.UserID;
+
+    let query = "SELECT * FROM edits NATURAL JOIN inCart NATURAL JOIN product WHERE UserID = '"+userID+"'";
+    db.query(query, (err, result) =>{
+      if(err) throw err;
+      res.render('checkout',{
+        products:result});
+      });
+  },
 
   productPage: (req, res) => {
     let id = req.params.id;
@@ -182,4 +192,5 @@ module.exports = {
       res.redirect('/');
     })
   },
+
 }
