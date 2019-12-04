@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>FLipKart Registration </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+
+    <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="libs/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="libs/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="libs/select2/select2.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="images/img-01.png" alt="IMG">
+            </div>
+
+            <form class="login100-form validate-form" action = "" method = "POST">
+					<span class="login100-form-title">
+						Add card
+                    </span>
+
+                <div class="wrap-input100 validate-input" data-validate = "First Name is required">
+                    <input class="input100" type="text" name="cardholdername" placeholder="Full Name">
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "Valid card number 16digit number">
+                    <input class="input100" type="text" name="cardnumber" placeholder="Card number">
+                </div>
+
+
+
+                    <label className="control-label" htmlFor="password">Card Expiry Date</label>
+                    <div className="controls">
+                        <select className="span3" name= "expiry_month" onChange={this.update}>
+                            <option></option>
+                            <option value="01">Jan (01)</option>
+                            <option value="02">Feb (02)</option>
+                            <option value="03">Mar (03)</option>
+                            <option value="04">Apr (04)</option>
+                            <option value="05">May (05)</option>
+                            <option value="06">June (06)</option>
+                            <option value="07">July (07)</option>
+                            <option value="08">Aug (08)</option>
+                            <option value="09">Sep (09)</option>
+                            <option value="10">Oct (10)</option>
+                            <option value="11">Nov (11)</option>
+                            <option value="12">Dec (12)</option>
+                        </select>
+
+                        <select className="span2" name="expiry_year" onChange={this.update} >
+                            <option value="19">2019</option>
+                            <option value="20">2020</option>
+                            <option value="21">2021</option>
+                            <option value="22">2022</option>
+                            <option value="23">2023</option>
+                            <option value="24">2024</option>
+                            <option value="25">2025</option>
+                            <option value="26">2026</option>
+                            <option value="27">2027</option>
+                            <option value="28">2028</option>
+                            <option value="29">2029</option>
+
+                        </select>
+
+                    </div>
+
+
+
+
+                <div class="wrap-input100 validate-input" data-validate = "CVV is required">
+                    <input class="input100" type="password" name="cvv" placeholder="CVV">
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn">
+                        Register
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="libs/jquery/jquery-3.2.1.min.js"></script>
+<script src="libs/bootstrap/js/popper.js"></script>
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="libs/select2/select2.min.js"></script>
+<script src="libs/tilt/tilt.jquery.min.js"></script>
+<script >
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
