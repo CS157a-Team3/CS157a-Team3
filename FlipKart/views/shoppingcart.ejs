@@ -12,47 +12,48 @@
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
-            <div class="container">
-        
-            <!-- Brand -->
-            <a class="navbar-brand waves-effect" href="/storefront">
-                <strong class="blue-text">FlipKartt</strong>
-            </a>
-        
-            <!-- Links -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-                <!-- Left -->
-                <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link waves-effect" href="/storefront">Home</a>
-                </li>
-                </ul>
-        
-                <!-- Right -->
-                <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item">
-                    <a class="nav-link waves-effect" href="/cart">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="clearfix d-none d-sm-inline-block"> Cart </span>
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"" href="#"><%=user.Name%></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/logOut">Log Out</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                </li>
-                </ul>
-        
-            </div>
-        
-            </div>
-        </nav>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
 
+    <!-- Brand -->
+    <a class="navbar-brand waves-effect" href="/storefront">
+        <strong class="blue-text">FlipKartt</strong>
+    </a>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link waves-effect" href="/storefront">Home</a>
+        </li>
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+        <li class="nav-item">
+            <a class="nav-link waves-effect" href="/cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"" href="#"><%=user.Name%></a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/logOut">Log Out</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/myaccount">Edit My Account</a>
+              <a class="dropdown-item" href="/myshipping">Edit Shipping Info</a>
+              <a class="dropdown-item" href="/mypayment">Edit Payment Info</a>
+            </div>
+        </li>
+        </ul>
+
+    </div>
+
+    </div>
+</nav>
     <main>
 
         <!-- Main Container -->

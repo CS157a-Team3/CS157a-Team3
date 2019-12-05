@@ -151,11 +151,11 @@ module.exports = {
     let phonenumber = req.body.phonenumber;
     let password = req.body.password;
 
-    let emailCheck = "SELECT * FROM 'user' WHERE Email = '"+email+"'";
+    let emailCheck = "SELECT * FROM user WHERE Email = '"+email+"'";
 
     db.query(emailCheck, function(error, results, fields)
     {
-      if(results)
+      if(results != null)
       {
         console.log("email already exists");
         res.render('signup', {message: "Email already exists!"});
@@ -205,26 +205,96 @@ module.exports = {
     });
   },
 
-  isAuth(req, res, next){
-    if (req.session.userId == null) {
-      res.redirect('login');
-    } else {
-      next();
-    }
-  },
-
-  notAuth(req, res, next){
-    if (req.session.userId == null) {
-      res.redirect('login');
-    } else {
-      next();
-    }
-  },
-
   logOut(req, res){
     req.session.destroy(function(err) {
       res.redirect('/');
     })
   },
 
+  accountPage(req,res){
+    let userID = res.locals.user.UserID;
+    let query = "SELECT * FROM user WHERE UserID = '"+userID+"'";
+
+    db.query(query, (err, result) =>{
+      if(err) throw err;
+      res.render('account', {
+        user: result[0]
+      });
+    })
+  },
+
+  accountUpdate(req, res){
+    let userID = res.locals.user.UserID;  
+    let name = req.body.fullName;
+    let phoneNumber = req.body.phoneNumber;
+    let email = req.body.email;
+    let password = req.body.password;
+
+    let query = "UPDATE user SET Name = '"+name+"', PhoneNumber = '"+phoneNumber+"', Email = '"+email+"', Password = '"+password+"' WHERE UserID = '"+userID+"'";
+    db.query(query, (err, result) => {
+      if(err) throw err;
+      console.log("Account updated");
+      res.redirect('/myaccount')
+    })
+  },
+
+  paymentPage(req,res){
+    let userID = res.locals.user.UserID;
+    let query = "SELECT * FROM user NATURAL JOIN paysWith NATURAL JOIN creditCard WHERE UserID = '"+userID+"'";
+    db.query(query, (err, result) => {
+      if (err) throw err;
+      res.render("payment", {
+        cards: result
+      });
+    })
+  },
+
+  paymentUpdate(req,res){
+    let userID = res.locals.user.UserID;
+    let cardName = req.body.cardName;
+    let cardNum = req.body.cardNum;
+    let expDate = req.body.expDate;
+    let cvv = req.body.cvv;
+
+    let cardQuery = "SELECT cardNum FROM paysWith WHERE userID = '"+userID+"'";
+    db.query(cardQuery, (err, result) => {
+      if(err) throw err;
+      let oldCardNum = result[0].cardNum;
+      let updateCC = "UPDATE creditCard SET cardName = '"+cardName+"', cardNum = '"+cardNum+"', expDate = '"+expDate+"', CVV = '"+cvv+"' WHERE cardNum = '"+oldCardNum+"'";
+      db.query(updateCC, (err, result) =>{
+        if(err) throw err;
+        let updatepaysWith = "UPDATE paysWith SET cardNum = '"+cardNum+"' WHERE userID = '"+userID+"'";
+        db.query(updatepaysWith, (err, result) =>{
+          if(err) throw err;
+          res.redirect('/mypayment');
+        })
+      })
+    })
+  },
+
+  shippingPage(req,res){
+    let userID = res.locals.user.UserID;
+    let query = "SELECT * FROM user NATURAL JOIN shipsTo NATURAL JOIN address WHERE UserID = '"+userID+"'";
+    db.query(query, (err, result) =>{
+      if(err) throw err;
+      res.render("shipping", {
+        addresses: result
+      })
+    })
+  },
+
+  // shippingUpdate(req, res){
+  //   let userID = res.locals.user.UserID;
+  //   let firstName = res.body,firstName;
+  //   let lastName = res.body.lastName;
+  //   let address = res.body.address;
+  //   let city = req.body.city;
+  //   let state = req.body.state;
+  //   let zip = req.body.zip;
+
+  //   let addressQuery = "SELECT addressID FROM shipsTo WHERE userID = '"+userID+"'";
+  //   db.query(addressQuery, (err, result) => {
+  //     let 
+  //   })
+  // }
 }
