@@ -96,19 +96,21 @@ module.exports = {
     let expDate = req.body.expDate;
     let cvv = req.body.cvv;
 
+    let cardID = uuid.v4();
+
     let addAddress = "INSERT INTO address (addressID, address, state, city, zip, firstName, lastName) VALUES ('"+addressID+"', '"+address+"', '"+state+"', '"+city+"', '"+zip+"', '"+firstName+"', '"+lastName+"')";
     db.query(addAddress, (err, result) =>{
       if(err) throw err;
     })
-    let connectAddress = "INSERT INTO shipsTo (userID, address) VALUES ('"+userID+"', '"+addressID+"')";
+    let connectAddress = "INSERT INTO shipsTo (userID, addressID) VALUES ('"+userID+"', '"+addressID+"')";
     db.query(connectAddress, (err, result) =>{
       if(err) throw err;
     })
-    let addCard = "INSERT INTO creditCard (cardNum, cardName, CVV, expDate) VALUES ('"+cardNum+"', '"+cardName+"', '"+cvv+"', '"+expDate+"')";
+    let addCard = "INSERT INTO creditCard (cardNum, cardName, CVV, expDate, cardID) VALUES ('"+cardNum+"', '"+cardName+"', '"+cvv+"', '"+expDate+"', '"+cardID+"')";
     db.query(addCard, (err, results) =>{
       if(err) throw err;
     })
-    let connectCard = "INSERT INTO paysWith (userID, cardNum) VALUES ('"+userID+"', '"+cardNum+"')";
+    let connectCard = "INSERT INTO paysWith (userID, cardID) VALUES ('"+userID+"', '"+cardID+"')";
     db.query(connectCard, (err, results) =>{
       if(err) throw err;
     })
@@ -155,7 +157,8 @@ module.exports = {
 
     db.query(emailCheck, function(error, results, fields)
     {
-      if(results != null)
+      console.log(results);
+      if(results.length)
       {
         console.log("email already exists");
         res.render('signup', {message: "Email already exists!"});
@@ -190,12 +193,15 @@ module.exports = {
     let authCheck = "SELECT * FROM user WHERE Email = '"+email+"'";
     db.query(authCheck, function(error, results, fields)
     {
-      if(results && results[0].Password == password)
+      if(results.length)
       {
-        req.session.userId = results[0].UserID;
-        req.session.user = results[0];
-        res.redirect('/storefront')
-        console.log("auth successful");
+        if(results[0].Password == password)
+        {
+          req.session.userId = results[0].UserID;
+          req.session.user = results[0];
+          res.redirect('/storefront')
+          console.log("auth successful");
+        }
       }
       else
       {
@@ -255,19 +261,20 @@ module.exports = {
     let cardNum = req.body.cardNum;
     let expDate = req.body.expDate;
     let cvv = req.body.cvv;
+    let cardID = req.body.cardID;
 
-    let cardQuery = "SELECT cardNum FROM paysWith WHERE userID = '"+userID+"'";
+    let cardQuery = "SELECT cardID FROM paysWith WHERE userID = '"+userID+"'";
     db.query(cardQuery, (err, result) => {
       if(err) throw err;
-      let oldCardNum = result[0].cardNum;
-      let updateCC = "UPDATE creditCard SET cardName = '"+cardName+"', cardNum = '"+cardNum+"', expDate = '"+expDate+"', CVV = '"+cvv+"' WHERE cardNum = '"+oldCardNum+"'";
+      let updateCC = "UPDATE creditCard SET cardName = '"+cardName+"', cardNum = '"+cardNum+"', expDate = '"+expDate+"', CVV = '"+cvv+"' WHERE cardID = '"+cardID+"'";
       db.query(updateCC, (err, result) =>{
         if(err) throw err;
-        let updatepaysWith = "UPDATE paysWith SET cardNum = '"+cardNum+"' WHERE userID = '"+userID+"'";
-        db.query(updatepaysWith, (err, result) =>{
-          if(err) throw err;
-          res.redirect('/mypayment');
-        })
+        res.redirect('/mypayment');
+        // let updatepaysWith = "UPDATE paysWith SET cardNum = '"+cardNum+"' WHERE userID = '"+userID+"'";
+        // db.query(updatepaysWith, (err, result) =>{
+        //   if(err) throw err;
+        //   res.redirect('/mypayment');
+        // })
       })
     })
   },
@@ -283,18 +290,19 @@ module.exports = {
     })
   },
 
-  // shippingUpdate(req, res){
-  //   let userID = res.locals.user.UserID;
-  //   let firstName = res.body,firstName;
-  //   let lastName = res.body.lastName;
-  //   let address = res.body.address;
-  //   let city = req.body.city;
-  //   let state = req.body.state;
-  //   let zip = req.body.zip;
+  shippingUpdate(req, res){
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let address = req.body.address;
+    let city = req.body.city;
+    let state = req.body.state;
+    let zip = req.body.zip;
+    let addressID = req.body.addressID;
 
-  //   let addressQuery = "SELECT addressID FROM shipsTo WHERE userID = '"+userID+"'";
-  //   db.query(addressQuery, (err, result) => {
-  //     let 
-  //   })
-  // }
+    let updateQuery = "UPDATE address SET firstName='"+firstName+"', lastName='"+lastName+"', address='"+address+"', city='"+city+"', state='"+state+"', zip='"+zip+"' WHERE addressID='"+addressID+"'";
+      db.query(updateQuery, (err, result) => {
+        if(err) throw err;
+        res.redirect("/myshipping")
+      })  
+  }
 }

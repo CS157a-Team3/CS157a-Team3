@@ -73,8 +73,6 @@
                         <!--Card content-->
                         <% cards.forEach((card, index) => { %>
                         <form class="card-body" action = "" method = "POST">
-            
-
                           <div class="row">
                             <div class="col-md-6 mb-3">
                               <label for="cc-name"></label>
@@ -112,7 +110,7 @@
                             </div>
                           </div>
                           <hr class="mb-4">
-                          <button class="btn btn-primary btn-lg btn-block" type="submit">Update</button>
+                          <button class="btn btn-primary btn-lg btn-block" name="cardID" value="<%=card.cardID%>" type="submit">Update</button>
             
                         </form>
                         <% }) %>

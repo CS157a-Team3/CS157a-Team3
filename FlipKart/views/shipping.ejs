@@ -71,6 +71,7 @@
                       <div class="card">
             
                         <!--Card content-->
+                        <% addresses.forEach((address, index) => { %>
                         <form class="card-body" action = "" method = "POST">
             
                           <!--Grid row-->
@@ -81,7 +82,7 @@
             
                               <!--firstName-->
                               <div class="md-form ">
-                                <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First Name">
+                                <input type="text" id="firstName" name="firstName" class="form-control" value="<%=address.firstName%>">
                               </div>
             
                             </div>
@@ -92,7 +93,7 @@
             
                               <!--lastName-->
                               <div class="md-form">
-                                <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last Name">
+                                <input type="text" id="lastName" name="lastName" class="form-control" value="<%=address.lastName%>">
                               </div>
             
                             </div>
@@ -103,7 +104,7 @@
             
                           <!--address-->
                           <div class="md-form mb-5">
-                            <input type="text" id="address" class="form-control" name="address" placeholder="1234 Main St. Apt 5">
+                            <input type="text" id="address" class="form-control" name="address" value="<%=address.address%>">
                           </div>
             
                           <!--Grid row-->
@@ -113,7 +114,7 @@
                             <div class="col-lg-4 col-md-12 mb-4">
             
                               <label for="city">City</label>
-                              <input type="text" class="form-control" id="city" name="city" placeholder="" required>
+                              <input type="text" class="form-control" id="city" name="city" value="<%=address.city%>" required>
             
                             </div>
                             <!--Grid column-->
@@ -123,7 +124,7 @@
             
                               <label for="state">State</label>
                               <select class="custom-select d-block w-100" name="state" id="state" required>
-                                <option value="">Choose...</option>
+                                <option value="<%=address.state%>"><%=address.state%></option>
                                 <option>CA</option>
                               </select>
                               <div class="invalid-feedback">
@@ -137,7 +138,7 @@
                             <div class="col-lg-4 col-md-6 mb-4">
             
                               <label for="zip">Zip</label>
-                              <input type="text" class="form-control" id="zip" name="zip" placeholder="" required>
+                              <input type="text" class="form-control" id="zip" name="zip" value="<%=address.zip%>" required>
                               <div class="invalid-feedback">
                                 Zip code required.
                               </div>
@@ -149,10 +150,10 @@
                           <!--Grid row-->
             
                           <hr class="mb-4">
-                          <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+                          <button class="btn btn-primary btn-lg btn-block" name="addressID" type="submit" value="<%=address.addressID%>">Submit</button>
             
                         </form>
-            
+                        <% }) %>
                       </div>
                       <!--/.Card-->
             
