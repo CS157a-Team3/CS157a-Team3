@@ -40,7 +40,7 @@ CREATE TABLE `address` (
 
 LOCK TABLES `address` WRITE;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
-INSERT INTO `address` VALUES ('1234 Main St.','CA','Arcadai','91006','Danny','Song','93337f42-5e37-4b77-a975-fddb7c67fe55');
+INSERT INTO `address` VALUES ('1234 1st Street','CA','Arcadia','95112','Danny','Song','000f6bef-aa0d-4f84-9924-e0426599580b'),('746 N. 847th St.','CA','Arcadia','91006','Leann','Zhao ','06d6c223-0b60-41d8-8446-30539490732f'),('1154 S. 81st Street','CA','Arcadia','91006','Johnathan ','Smith','107454df-eb86-4f91-96f7-f1d22c9d0843'),('738 S. 5th St','CA','San Jose','95112','Frank ','Lin','4b46728b-7d80-47a9-a1e6-a75983dc27c1'),('7439 Third St.','CA','San Jose','95112','Eunice ','Sim','5b063cf8-24b4-4027-8a30-9c6d082ba09e'),('7432 First St','CA','San Jose','95112','Colin ','Chow','692d7f02-7a56-4345-b275-ae30d9a252e2'),('8574 S. First St.','CA','San Jose','95112','Mathew','Kessler','706b0294-4149-46c3-972e-9f8c68e4402f'),('1234 Main St.','CA','Arcadia','91006','Melissa','Song','83352e36-5920-4985-aa1a-65b895f01497'),('Hogwarts','CA','Somewhere','91006','Harry','Potter','853cedb1-1b51-4550-88bf-2ba63554acaf'),('7584 N. 915th St.','CA','Arcadia','91006','Jeff','Sayer','8975ffc3-20ca-4770-bd7f-69c5cc2481e0'),('8475 Death Star','CA','Space','74934','Darth ','Vader','a64a0047-cf78-47f7-a8b6-51dcecd3a100'),('8373 Second St','CA','San Jose','95112','Mike','Wu','a7f870d2-2594-4510-867d-f3907b608fca'),('583 N. 15th St','CA','San Jose','95112','Kevin','Lee','ab7098c6-b841-465a-9d01-858c327d4899'),('8409 Fairy Land','CA','Fairies','91006','Peter','Pan','e349dae1-15e3-4336-bc3a-ace2703675a1'),('1840 Fifth St','CA','San Jose','95112','John','John','e657178c-3ee0-4275-8ebd-ef822b4031eb');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +64,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES ('258c18e1-1f76-4334-a623-e2321b118b96',NULL),('2cbe6f11-7537-4a5c-b5f6-a1872dd17065',NULL),('8d27d69e-1333-11ea-a993-40a3cc604820',0),('97767342-de59-4554-8684-2f7ee809fbf4',NULL);
+INSERT INTO `carts` VALUES ('0fc62bb4-213b-419e-b655-7cd8e3ddc8a8',0),('20068727-df29-4a37-b5ff-816cfc2ceb9b',0),('2c0037af-f8a1-475d-a821-3dbb829bbdf6',0),('395ced40-b16a-49c3-8f7d-df641a17cb2b',0),('4836113a-d8c5-4d1e-871c-44e789eb0257',0),('59daeea0-f1f2-49e3-841d-7d4486b8feb1',0),('6bc72b14-f7ab-4ba4-8b00-c4ea92721790',0),('6d601156-b8ec-4fdb-ac36-fd50fdc5106d',0),('7f81ccb8-fb80-4301-8c57-c21d2a270645',0),('838c54bf-b836-4b27-8505-7b0cef9fe6d7',0),('8dd73680-3b27-4fee-bc82-15ac7d7a58d8',0),('8fac3217-7c92-42c3-86d3-9bfc62e9f930',0),('b3124b76-614b-4c5a-bbd0-1efc75fdd24f',0),('b56f0ae2-a444-4576-a4fa-d784b508a627',0),('e32ec436-3228-40d8-a193-d87493cf3af4',0);
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,11 +100,12 @@ DROP TABLE IF EXISTS `creditCard`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `creditCard` (
-  `cardNum` varchar(19) NOT NULL,
+  `cardNum` varchar(19) DEFAULT NULL,
   `cardName` varchar(50) DEFAULT NULL,
   `CVV` int(11) DEFAULT NULL,
   `expDate` varchar(6) DEFAULT NULL,
-  PRIMARY KEY (`cardNum`)
+  `cardID` varchar(36) NOT NULL,
+  PRIMARY KEY (`cardID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -114,7 +115,7 @@ CREATE TABLE `creditCard` (
 
 LOCK TABLES `creditCard` WRITE;
 /*!40000 ALTER TABLE `creditCard` DISABLE KEYS */;
-INSERT INTO `creditCard` VALUES ('123457890','Danny Song',544,'05/19');
+INSERT INTO `creditCard` VALUES ('7483954209','Colin Chow',39,'09/22','014d24b2-0e79-4532-ab1a-663b7b6773cb'),('7589406857','Johnathan Smith ',758,'05/22','208da21e-7e23-4f27-a030-bed42850d119'),('8573948573','Mike Wu',847,'06/21','228ec534-89be-4033-9f4a-860f3cd5be11'),('7483759405','John John',748,'05/22','2804e412-831b-44e6-be9e-60387805d8c8'),('0987654321','Darth Vader',738,'05/22','2b3e40af-249e-48c9-bc3a-ed151ba5676b'),('74859463527','Darth Vader',748,'05/22','2f03010d-f559-48f2-a29b-f3e0577b311a'),('7483726590','Frank Lin',843,'05/22','361bd773-2129-4987-a2c6-2699923c17d7'),('1234567890','Danny Song',738,'01/21','366bf41f-4119-438e-a7a8-6372c626d613'),('7485948372','Harry Potter',999,'09/21','7fea1a1d-ea12-455d-a9de-16c22cb59357'),('7483749506','Eunice Sim',738,'05/19','822d807f-972b-431d-ac9c-0c51728b839f'),('8594736405','Leann Zhao',738,'06/21','8f4f0678-eea8-4657-a062-07605133d381'),('7485726354','Mathew Kessler',748,'09/22','c197d2a4-e972-43f4-9785-9753d3da55c7'),('7483929576','Peter Pan',948,'09/22','d55b6dc5-a01a-40e6-8544-4b0089b60697'),('0987654321','Melissa Song',765,'05/22','ef8e0ef1-da15-45bd-b33a-3384bfe35efa'),('8475920485','Jeff Sayer',174,'05/22','f619afbd-1395-42d5-912d-375277a76ba3'),('7485920396','Kevin Lee',567,'06/21','fc7df58c-7b48-496e-aad9-f67805b72cdd');
 /*!40000 ALTER TABLE `creditCard` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +142,7 @@ CREATE TABLE `edits` (
 
 LOCK TABLES `edits` WRITE;
 /*!40000 ALTER TABLE `edits` DISABLE KEYS */;
-INSERT INTO `edits` VALUES ('b61e5d59-42da-49c5-b58e-f78113698aff','258c18e1-1f76-4334-a623-e2321b118b96'),('c38b902b-2d9f-4ad1-9cee-b0031b4f1ac3','2cbe6f11-7537-4a5c-b5f6-a1872dd17065'),('24872575-124a-11ea-bd11-40a3cc604820','8d27d69e-1333-11ea-a993-40a3cc604820'),('abec77c8-7291-4f7b-ad69-0f20e9102efa','97767342-de59-4554-8684-2f7ee809fbf4');
+INSERT INTO `edits` VALUES ('c59362fe-3e11-4b49-8ddb-9404a360c67c','0fc62bb4-213b-419e-b655-7cd8e3ddc8a8'),('f16cc27f-9cca-4250-8654-2782ed691798','20068727-df29-4a37-b5ff-816cfc2ceb9b'),('541b7d3d-e41f-4727-b81d-2c0242f2a91b','2c0037af-f8a1-475d-a821-3dbb829bbdf6'),('f917d020-4c8b-4430-a435-737cc7cb7fc7','395ced40-b16a-49c3-8f7d-df641a17cb2b'),('af2d7de3-95ed-4aef-af05-9a349266b135','4836113a-d8c5-4d1e-871c-44e789eb0257'),('5be06677-734e-4ead-b33a-613f23201a94','59daeea0-f1f2-49e3-841d-7d4486b8feb1'),('f1cee8f7-f844-4532-aac3-8a18f625f0c3','6bc72b14-f7ab-4ba4-8b00-c4ea92721790'),('82bdc38e-d1e5-4633-9a7c-d082139e6bb5','6d601156-b8ec-4fdb-ac36-fd50fdc5106d'),('6cbf8b7c-5289-4366-984b-e437367dc592','7f81ccb8-fb80-4301-8c57-c21d2a270645'),('8f278db7-9230-4383-8e30-0ff8b33b9277','838c54bf-b836-4b27-8505-7b0cef9fe6d7'),('8a81cd30-94d6-4f21-ba7c-70ca973ee6c5','8dd73680-3b27-4fee-bc82-15ac7d7a58d8'),('95380a3f-e6fd-4e64-b92a-b809048d6125','8fac3217-7c92-42c3-86d3-9bfc62e9f930'),('e79b77c3-b816-4605-86d2-9ab8b05fa43d','b3124b76-614b-4c5a-bbd0-1efc75fdd24f'),('29711512-efbe-47ab-a253-b940468eead0','b56f0ae2-a444-4576-a4fa-d784b508a627'),('a653dad7-8378-4c10-859c-15715d959ff9','e32ec436-3228-40d8-a193-d87493cf3af4');
 /*!40000 ALTER TABLE `edits` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +170,7 @@ CREATE TABLE `inCart` (
 
 LOCK TABLES `inCart` WRITE;
 /*!40000 ALTER TABLE `inCart` DISABLE KEYS */;
-INSERT INTO `inCart` VALUES ('258c18e1-1f76-4334-a623-e2321b118b96','a788f7e0-12d1-11ea-bd11-40a3cc604820',1),('8d27d69e-1333-11ea-a993-40a3cc604820','a788f7e0-12d1-11ea-bd11-40a3cc604820',5),('8d27d69e-1333-11ea-a993-40a3cc604820','a78a086d-12d1-11ea-bd11-40a3cc604820',1);
+INSERT INTO `inCart` VALUES ('0fc62bb4-213b-419e-b655-7cd8e3ddc8a8','0c027521-1316-11ea-a993-40a3cc604820',1),('0fc62bb4-213b-419e-b655-7cd8e3ddc8a8','a789fc7d-12d1-11ea-bd11-40a3cc604820',1),('20068727-df29-4a37-b5ff-816cfc2ceb9b','0c027521-1316-11ea-a993-40a3cc604820',1),('20068727-df29-4a37-b5ff-816cfc2ceb9b','42c3e154-131c-11ea-a993-40a3cc604820',1),('2c0037af-f8a1-475d-a821-3dbb829bbdf6','0c022f3d-1316-11ea-a993-40a3cc604820',1),('2c0037af-f8a1-475d-a821-3dbb829bbdf6','6278d724-12e2-11ea-a993-40a3cc604820',1),('395ced40-b16a-49c3-8f7d-df641a17cb2b','a789ee8c-12d1-11ea-bd11-40a3cc604820',15),('4836113a-d8c5-4d1e-871c-44e789eb0257','c07fcc93-131e-11ea-a993-40a3cc604820',1),('59daeea0-f1f2-49e3-841d-7d4486b8feb1','a789ee8c-12d1-11ea-bd11-40a3cc604820',1),('59daeea0-f1f2-49e3-841d-7d4486b8feb1','a78a086d-12d1-11ea-bd11-40a3cc604820',1),('6bc72b14-f7ab-4ba4-8b00-c4ea92721790','62794da3-12e2-11ea-a993-40a3cc604820',1),('6d601156-b8ec-4fdb-ac36-fd50fdc5106d','8ffdd141-131c-11ea-a993-40a3cc604820',1),('7f81ccb8-fb80-4301-8c57-c21d2a270645','a789ad7f-12d1-11ea-bd11-40a3cc604820',10),('838c54bf-b836-4b27-8505-7b0cef9fe6d7','42c396ac-131c-11ea-a993-40a3cc604820',1),('838c54bf-b836-4b27-8505-7b0cef9fe6d7','42c3c5ca-131c-11ea-a993-40a3cc604820',1),('8dd73680-3b27-4fee-bc82-15ac7d7a58d8','0c028e96-1316-11ea-a993-40a3cc604820',1),('8dd73680-3b27-4fee-bc82-15ac7d7a58d8','a789ad7f-12d1-11ea-bd11-40a3cc604820',1),('8fac3217-7c92-42c3-86d3-9bfc62e9f930','0c027521-1316-11ea-a993-40a3cc604820',15),('b3124b76-614b-4c5a-bbd0-1efc75fdd24f','0c0244de-1316-11ea-a993-40a3cc604820',1),('b3124b76-614b-4c5a-bbd0-1efc75fdd24f','a789fc7d-12d1-11ea-bd11-40a3cc604820',1),('b56f0ae2-a444-4576-a4fa-d784b508a627','0c028e96-1316-11ea-a993-40a3cc604820',1),('e32ec436-3228-40d8-a193-d87493cf3af4','42c3b3d2-131c-11ea-a993-40a3cc604820',1),('e32ec436-3228-40d8-a193-d87493cf3af4','a788ea25-12d1-11ea-bd11-40a3cc604820',1);
 /*!40000 ALTER TABLE `inCart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,11 +210,11 @@ DROP TABLE IF EXISTS `paysWith`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `paysWith` (
   `userID` varchar(36) NOT NULL,
-  `cardNum` varchar(19) NOT NULL,
-  PRIMARY KEY (`userID`,`cardNum`),
-  KEY `fk_paysWith_2_idx` (`cardNum`),
+  `cardID` varchar(36) NOT NULL,
+  PRIMARY KEY (`userID`,`cardID`),
+  KEY `fk_paysWith_2_idx` (`cardID`),
   CONSTRAINT `fk_paysWith_1` FOREIGN KEY (`userID`) REFERENCES `user` (`UserID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_paysWith_2` FOREIGN KEY (`cardNum`) REFERENCES `creditCard` (`cardNum`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_paysWith_2` FOREIGN KEY (`cardID`) REFERENCES `creditCard` (`cardID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -223,7 +224,7 @@ CREATE TABLE `paysWith` (
 
 LOCK TABLES `paysWith` WRITE;
 /*!40000 ALTER TABLE `paysWith` DISABLE KEYS */;
-INSERT INTO `paysWith` VALUES ('24872575-124a-11ea-bd11-40a3cc604820','123457890');
+INSERT INTO `paysWith` VALUES ('541b7d3d-e41f-4727-b81d-2c0242f2a91b','014d24b2-0e79-4532-ab1a-663b7b6773cb'),('af2d7de3-95ed-4aef-af05-9a349266b135','208da21e-7e23-4f27-a030-bed42850d119'),('82bdc38e-d1e5-4633-9a7c-d082139e6bb5','228ec534-89be-4033-9f4a-860f3cd5be11'),('f917d020-4c8b-4430-a435-737cc7cb7fc7','2804e412-831b-44e6-be9e-60387805d8c8'),('f1cee8f7-f844-4532-aac3-8a18f625f0c3','2b3e40af-249e-48c9-bc3a-ed151ba5676b'),('f16cc27f-9cca-4250-8654-2782ed691798','2f03010d-f559-48f2-a29b-f3e0577b311a'),('a653dad7-8378-4c10-859c-15715d959ff9','361bd773-2129-4987-a2c6-2699923c17d7'),('f1cee8f7-f844-4532-aac3-8a18f625f0c3','366bf41f-4119-438e-a7a8-6372c626d613'),('e79b77c3-b816-4605-86d2-9ab8b05fa43d','7fea1a1d-ea12-455d-a9de-16c22cb59357'),('c59362fe-3e11-4b49-8ddb-9404a360c67c','822d807f-972b-431d-ac9c-0c51728b839f'),('5be06677-734e-4ead-b33a-613f23201a94','8f4f0678-eea8-4657-a062-07605133d381'),('95380a3f-e6fd-4e64-b92a-b809048d6125','c197d2a4-e972-43f4-9785-9753d3da55c7'),('6cbf8b7c-5289-4366-984b-e437367dc592','d55b6dc5-a01a-40e6-8544-4b0089b60697'),('29711512-efbe-47ab-a253-b940468eead0','ef8e0ef1-da15-45bd-b33a-3384bfe35efa'),('8a81cd30-94d6-4f21-ba7c-70ca973ee6c5','f619afbd-1395-42d5-912d-375277a76ba3'),('8f278db7-9230-4383-8e30-0ff8b33b9277','fc7df58c-7b48-496e-aad9-f67805b72cdd');
 /*!40000 ALTER TABLE `paysWith` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,8 +264,8 @@ DROP TABLE IF EXISTS `shipsTo`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `shipsTo` (
   `userID` varchar(36) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  PRIMARY KEY (`userID`,`address`),
+  `addressID` varchar(100) NOT NULL,
+  PRIMARY KEY (`userID`,`addressID`),
   CONSTRAINT `fk_shipTo_1` FOREIGN KEY (`userID`) REFERENCES `user` (`UserID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -275,7 +276,7 @@ CREATE TABLE `shipsTo` (
 
 LOCK TABLES `shipsTo` WRITE;
 /*!40000 ALTER TABLE `shipsTo` DISABLE KEYS */;
-INSERT INTO `shipsTo` VALUES ('24872575-124a-11ea-bd11-40a3cc604820','93337f42-5e37-4b77-a975-fddb7c67fe55');
+INSERT INTO `shipsTo` VALUES ('29711512-efbe-47ab-a253-b940468eead0','83352e36-5920-4985-aa1a-65b895f01497'),('541b7d3d-e41f-4727-b81d-2c0242f2a91b','692d7f02-7a56-4345-b275-ae30d9a252e2'),('5be06677-734e-4ead-b33a-613f23201a94','06d6c223-0b60-41d8-8446-30539490732f'),('6cbf8b7c-5289-4366-984b-e437367dc592','e349dae1-15e3-4336-bc3a-ace2703675a1'),('82bdc38e-d1e5-4633-9a7c-d082139e6bb5','a7f870d2-2594-4510-867d-f3907b608fca'),('8a81cd30-94d6-4f21-ba7c-70ca973ee6c5','8975ffc3-20ca-4770-bd7f-69c5cc2481e0'),('8f278db7-9230-4383-8e30-0ff8b33b9277','ab7098c6-b841-465a-9d01-858c327d4899'),('95380a3f-e6fd-4e64-b92a-b809048d6125','706b0294-4149-46c3-972e-9f8c68e4402f'),('a653dad7-8378-4c10-859c-15715d959ff9','4b46728b-7d80-47a9-a1e6-a75983dc27c1'),('af2d7de3-95ed-4aef-af05-9a349266b135','107454df-eb86-4f91-96f7-f1d22c9d0843'),('c59362fe-3e11-4b49-8ddb-9404a360c67c','5b063cf8-24b4-4027-8a30-9c6d082ba09e'),('e79b77c3-b816-4605-86d2-9ab8b05fa43d','853cedb1-1b51-4550-88bf-2ba63554acaf'),('f16cc27f-9cca-4250-8654-2782ed691798','a64a0047-cf78-47f7-a8b6-51dcecd3a100'),('f1cee8f7-f844-4532-aac3-8a18f625f0c3','000f6bef-aa0d-4f84-9924-e0426599580b'),('f917d020-4c8b-4430-a435-737cc7cb7fc7','e657178c-3ee0-4275-8ebd-ef822b4031eb');
 /*!40000 ALTER TABLE `shipsTo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -302,7 +303,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('24872575-124a-11ea-bd11-40a3cc604820','Danny Song','dannysong@lol.com','6268020549','12345'),('abec77c8-7291-4f7b-ad69-0f20e9102efa','Eunice','eunice@lol.com','12345789','12345'),('b61e5d59-42da-49c5-b58e-f78113698aff','Mike Wu','mike@lol.com','1234567','12345'),('c38b902b-2d9f-4ad1-9cee-b0031b4f1ac3','Mitchell','mitchell@lol.com','123456789','12345');
+INSERT INTO `user` VALUES ('29711512-efbe-47ab-a253-b940468eead0','Melissa Song','melissa@lol.com','1234567890','12345'),('541b7d3d-e41f-4727-b81d-2c0242f2a91b','Colin Chow','colin@lol.com','4089587364','12345'),('5be06677-734e-4ead-b33a-613f23201a94','Leann Zhao ','leann@lol.com','8495867384','12345'),('6cbf8b7c-5289-4366-984b-e437367dc592','Peter Pan','peter@lol.com','6268020549','12345'),('82bdc38e-d1e5-4633-9a7c-d082139e6bb5','Mike Wu','mike@lol.com','8047385746','12345'),('8a81cd30-94d6-4f21-ba7c-70ca973ee6c5','Jeff Sayer','jeff@lol.com','7483960594','12345'),('8f278db7-9230-4383-8e30-0ff8b33b9277','Kevin Lee','kevin@lol.com','6267384759','12345'),('95380a3f-e6fd-4e64-b92a-b809048d6125','Mathew Kessler','mathew@lol.com','6375849384','12345'),('a653dad7-8378-4c10-859c-15715d959ff9','Frank Lin','frank@lol.com','408593827','12345'),('af2d7de3-95ed-4aef-af05-9a349266b135','Johnathan Smith','johnathan@lol.com','7463829576','12345'),('c59362fe-3e11-4b49-8ddb-9404a360c67c','Eunice Sim','eunice@lol.com','4086273849','12345'),('e79b77c3-b816-4605-86d2-9ab8b05fa43d','Harry Potter','harry@lol.com','80473857482','12345'),('f16cc27f-9cca-4250-8654-2782ed691798','Darth Vader','darth@lol.com','4089574837','12345'),('f1cee8f7-f844-4532-aac3-8a18f625f0c3','Danny Song','danny@lol.com','6268020549','12345'),('f917d020-4c8b-4430-a435-737cc7cb7fc7','John John','john@lol.com','75849374650','12345');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -315,4 +316,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-02 20:22:18
+-- Dump completed on 2019-12-08 22:09:19

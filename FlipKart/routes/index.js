@@ -45,7 +45,6 @@ module.exports = {
     let userID = res.locals.user.UserID;
     console.log("user id: " + userID);
     let query = "SELECT * FROM edits NATURAL JOIN inCart NATURAL JOIN product WHERE UserID = '"+userID+"'";
-    // let query = "SELECT * FROM product NATURAL JOIN inCart WHERE productID IN (SELECT productID FROM edits NATURAL JOIN inCart WHERE userID = '"+userID+"')"
     
     db.query(query, (err, result) => {
       if(err) throw err;
@@ -73,7 +72,7 @@ module.exports = {
   checkoutPage(req, res){
     let userID = res.locals.user.UserID;
 
-    let query = "SELECT * FROM edits NATURAL JOIN inCart NATURAL JOIN product WHERE UserID = '"+userID+"'";
+    let query = "SELECT * FROM edits NATURAL JOIN inCart NATURAL JOIN product NATURAL JOIN inCat NATURAL JOIN category WHERE UserID = '"+userID+"'";
     db.query(query, (err, result) =>{
       if(err) throw err;
       res.render('checkout',{
@@ -200,7 +199,7 @@ module.exports = {
           req.session.userId = results[0].UserID;
           req.session.user = results[0];
           res.redirect('/storefront')
-          console.log("auth successful");
+          console.log("auth successful:" + results[0].Name);
         }
       }
       else
@@ -257,26 +256,45 @@ module.exports = {
 
   paymentUpdate(req,res){
     let userID = res.locals.user.UserID;
+    let cardID = req.body.cardID;
     let cardName = req.body.cardName;
     let cardNum = req.body.cardNum;
     let expDate = req.body.expDate;
     let cvv = req.body.cvv;
-    let cardID = req.body.cardID;
+    let buttonType = req.body. buttonType;
 
-    let cardQuery = "SELECT cardID FROM paysWith WHERE userID = '"+userID+"'";
-    db.query(cardQuery, (err, result) => {
-      if(err) throw err;
-      let updateCC = "UPDATE creditCard SET cardName = '"+cardName+"', cardNum = '"+cardNum+"', expDate = '"+expDate+"', CVV = '"+cvv+"' WHERE cardID = '"+cardID+"'";
-      db.query(updateCC, (err, result) =>{
-        if(err) throw err;
-        res.redirect('/mypayment');
-        // let updatepaysWith = "UPDATE paysWith SET cardNum = '"+cardNum+"' WHERE userID = '"+userID+"'";
-        // db.query(updatepaysWith, (err, result) =>{
-        //   if(err) throw err;
-        //   res.redirect('/mypayment');
-        // })
+    if(buttonType == "Delete"){
+      let unLinkCard = "DELETE FROM paysWith WHERE cardID='"+cardID+"'";
+      db.query(unLinkCard, (err, result) =>{
+        if(err)throw err;
       })
-    })
+      let deleteQuery = "DELETE FROM creditCard WHERE cardID='"+cardID+"'";
+      db.query(deleteQuery, (err, result) =>{
+        if(err)throw err;
+        res.redirect("/mypayment");
+      })
+    }
+
+    else if(buttonType == "newCard"){
+      let cardID = uuid.v4();
+      let addCard = "INSERT INTO creditCard (cardNum, cardName, CVV, expDate, cardID) VALUES ('"+cardNum+"', '"+cardName+"', '"+cvv+"', '"+expDate+"', '"+cardID+"')";
+      db.query(addCard, (err, result) =>{
+        if(err) throw err;
+      })
+      let connectCard = "INSERT INTO paysWith (userID, cardID) VALUES ('"+userID+"', '"+cardID+"')";
+      db.query(connectCard, (err, result) =>{
+        if(err) throw err;
+        res.redirect("/mypayment");
+      })
+    }
+
+    else{
+      let updateCC = "UPDATE creditCard SET cardName = '"+cardName+"', cardNum = '"+cardNum+"', expDate = '"+expDate+"', CVV = '"+cvv+"' WHERE cardID = '"+cardID+"'";
+      db.query(updateCC, (err, result) => {
+        if(err) throw err;
+        res.redirect("/mypayment")
+      })  
+    }
   },
 
   shippingPage(req,res){
@@ -291,18 +309,48 @@ module.exports = {
   },
 
   shippingUpdate(req, res){
+    let userID = res.locals.user.UserID;
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
     let address = req.body.address;
     let city = req.body.city;
     let state = req.body.state;
     let zip = req.body.zip;
+    let buttonType = req.body.buttonType;
     let addressID = req.body.addressID;
 
-    let updateQuery = "UPDATE address SET firstName='"+firstName+"', lastName='"+lastName+"', address='"+address+"', city='"+city+"', state='"+state+"', zip='"+zip+"' WHERE addressID='"+addressID+"'";
+    if(buttonType == "Delete"){
+      let unLinkCard = "DELETE FROM shipsTo WHERE addressID='"+addressID+"'";
+      db.query(unLinkCard, (err, result) =>{
+        if(err)throw err;
+      })
+      let deleteQuery = "DELETE FROM address WHERE addressID='"+addressID+"'";
+      db.query(deleteQuery, (err, result) =>{
+        if(err)throw err;
+        res.redirect("/myshipping");
+      })
+    }
+
+    else if(buttonType == "newAddress"){
+      let addressID = uuid.v4();
+      let addAddress = "INSERT INTO address (addressID, address, state, city, zip, firstName, lastName) VALUES ('"+addressID+"', '"+address+"', '"+state+"', '"+city+"', '"+zip+"', '"+firstName+"', '"+lastName+"')";
+      db.query(addAddress, (err, result) =>{
+        if(err) throw err;
+      })
+      let connectAddress = "INSERT INTO shipsTo (userID, addressID) VALUES ('"+userID+"', '"+addressID+"')";
+      db.query(connectAddress, (err, result) =>{
+        if(err) throw err;
+        res.redirect("/myshipping");
+      })
+    }
+
+    else{
+      // let addressID = buttonType;
+      let updateQuery = "UPDATE address SET firstName='"+firstName+"', lastName='"+lastName+"', address='"+address+"', city='"+city+"', state='"+state+"', zip='"+zip+"' WHERE addressID='"+addressID+"'";
       db.query(updateQuery, (err, result) => {
         if(err) throw err;
         res.redirect("/myshipping")
       })  
+    }
   }
 }

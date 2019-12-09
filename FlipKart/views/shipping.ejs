@@ -83,6 +83,7 @@
                               <!--firstName-->
                               <div class="md-form ">
                                 <input type="text" id="firstName" name="firstName" class="form-control" value="<%=address.firstName%>">
+                                <input type="hidden" name="addressID" class="form-control" value="<%=address.addressID%>">
                               </div>
             
                             </div>
@@ -150,10 +151,104 @@
                           <!--Grid row-->
             
                           <hr class="mb-4">
-                          <button class="btn btn-primary btn-lg btn-block" name="addressID" type="submit" value="<%=address.addressID%>">Submit</button>
-            
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <button class="btn btn-primary btn-lg btn-block" name="buttonType" type="submit" value="<%=address.addressID%>">Update</button>
+                            </div>  
+                            <div class="col-lg-6">
+                              <button class="btn btn-primary btn-lg btn-block" name="buttonType" type="submit" data-value="<%=address.addressID%>" value="Delete">Delete</button>
+                            </div>  
+                          </div>        
                         </form>
-                        <% }) %>
+                        <% }) %> 
+                      </div>
+                      <!--/.Card-->
+
+
+
+                      <div class="card">
+            
+                        <!--Card content-->
+                        <form class="card-body" action = "" method = "POST">
+            
+                          <!--Grid row-->
+                          <div class="row">
+            
+                            <!--Grid column-->
+                            <div class="col-md-6 mb-2">
+            
+                              <!--firstName-->
+                              <div class="md-form ">
+                                <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First Name">
+                              </div>
+            
+                            </div>
+                            <!--Grid column-->
+            
+                            <!--Grid column-->
+                            <div class="col-md-6 mb-2">
+            
+                              <!--lastName-->
+                              <div class="md-form">
+                                <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last Name">
+                              </div>
+            
+                            </div>
+                            <!--Grid column-->
+            
+                          </div>
+                          <!--Grid row-->
+            
+                          <!--address-->
+                          <div class="md-form mb-5">
+                            <input type="text" id="address" class="form-control" name="address" placeholder="1234 Main St. Apt 5">
+                          </div>
+            
+                          <!--Grid row-->
+                          <div class="row">
+            
+                            <!--Grid column-->
+                            <div class="col-lg-4 col-md-12 mb-4">
+            
+                              <label for="city">City</label>
+                              <input type="text" class="form-control" id="city" name="city" placeholder="" required>
+            
+                            </div>
+                            <!--Grid column-->
+            
+                            <!--Grid column-->
+                            <div class="col-lg-4 col-md-6 mb-4">
+            
+                              <label for="state">State</label>
+                              <select class="custom-select d-block w-100" name="state" id="state" required>
+                                <option value="">Choose...</option>
+                                <option>CA</option>
+                              </select>
+                              <div class="invalid-feedback">
+                                Please provide a valid state.
+                              </div>
+            
+                            </div>
+                            <!--Grid column-->
+            
+                            <!--Grid column-->
+                            <div class="col-lg-4 col-md-6 mb-4">
+            
+                              <label for="zip">Zip</label>
+                              <input type="text" class="form-control" id="zip" name="zip" placeholder="" required>
+                              <div class="invalid-feedback">
+                                Zip code required.
+                              </div>
+            
+                            </div>
+                            <!--Grid column-->
+            
+                          </div>
+            
+                          <hr class="mb-4">
+                          <button class="btn btn-primary btn-lg btn-block" name="buttonType" type="submit" value="newAddress">Add New Address</button>
+ 
+                        </form>
                       </div>
                       <!--/.Card-->
             

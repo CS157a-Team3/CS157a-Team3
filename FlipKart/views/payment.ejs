@@ -77,6 +77,7 @@
                             <div class="col-md-6 mb-3">
                               <label for="cc-name"></label>
                               <input type="text" class="form-control" id="cc-name" name="cardName" value="<%=card.cardName%>" required>
+                              <input type="hidden" name="cardID" class="form-control" value="<%=card.cardID%>">
                               <small class="text-muted">Full name as displayed on card</small>
                               <div class="invalid-feedback">
                                 Name on card is required
@@ -110,12 +111,64 @@
                             </div>
                           </div>
                           <hr class="mb-4">
-                          <button class="btn btn-primary btn-lg btn-block" name="cardID" value="<%=card.cardID%>" type="submit">Update</button>
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <button class="btn btn-primary btn-lg btn-block" name="buttonType" type="submit" value="<%=card.CardID%>">Update</button>
+                            </div>  
+                            <div class="col-lg-6">
+                              <button class="btn btn-primary btn-lg btn-block" name="buttonType" type="submit" value="Delete">Delete</button>
+                            </div>  
+                          </div>    
             
                         </form>
                         <% }) %>
                       </div>
                       <!--/.Card-->
+
+
+
+                      <div class="card">
+            
+                        <!--Card content-->
+                        <form class="card-body" action = "" method = "POST">
+                          <div class="row">
+                            <div class="col-md-6 mb-3">
+                              <label for="cc-name">Name on card</label>
+                              <input type="text" class="form-control" id="cc-name" name="cardName" placeholder="" required>
+                              <small class="text-muted">Full name as displayed on card</small>
+                              <div class="invalid-feedback">
+                                Name on card is required
+                              </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                              <label for="cc-number">Credit card number</label>
+                              <input type="text" class="form-control" id="cc-number" name="cardNum" placeholder="" required>
+                              <div class="invalid-feedback">
+                                Credit card number is required
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-3 mb-3">
+                              <label for="cc-expiration">Expiration</label>
+                              <input type="text" class="form-control" id="cc-expiration" name="expDate" placeholder="" required>
+                              <div class="invalid-feedback">
+                                Expiration date required
+                              </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <label for="cc-expiration">CVV</label>
+                              <input type="password" class="form-control" id="cc-cvv" name="cvv" placeholder="" required>
+                              <div class="invalid-feedback">
+                                Security code required
+                              </div>
+                            </div>
+                          </div>
+                          <hr class="mb-4">
+                          <button class="btn btn-primary btn-lg btn-block" name="buttonType" value="newCard" type="submit">Add Card</button>  
+            
+                        </form>
+                      </div>
             
                     </div>
             
