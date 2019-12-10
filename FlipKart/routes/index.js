@@ -132,15 +132,29 @@ module.exports = {
     console.log(qty);
     let userID = res.locals.user.UserID;
     let cartQuery = "SELECT cartID FROM edits WHERE UserID = '"+userID+"'";
+    
     db.query(cartQuery, (err, result) =>{ 
       if(err) throw err;
       let cartID = result[0].cartID;
-      console.log(cartID);
-      let insertQuery = "INSERT INTO inCart (cartID, productID, quantity) VALUES ('"+cartID+"', '"+productID+"', '"+qty+"')";
-      db.query(insertQuery, (err, result) => {
-        if (err) throw err;
-        console.log("added to cart");
-        res.redirect("/product/" + productID)
+      let checkQuery = "SELECT * from inCart WHERE cartID ='"+cartID+"' AND productID = '"+productID+"'";
+      db.query(checkQuery, (err, result) =>{
+        if(err) throw err;
+        if(!result.length){
+          let insertQuery = "INSERT INTO inCart (cartID, productID, quantity) VALUES ('"+cartID+"', '"+productID+"', '"+qty+"')";
+          db.query(insertQuery, (err, result) => {
+            if (err) throw err;
+            console.log("added to cart");
+            res.redirect("/product/" + productID)
+          })
+        }
+        else{
+          let newQty= parseInt(result[0].quantity) + parseInt(qty);
+          let updateQty = "UPDATE inCart SET quantity = '"+newQty+"' WHERE productID = '"+productID+"' AND cartID = '"+cartID+"'";
+          db.query(updateQty, (err, result) => {
+            if(err) throw err;
+            res.redirect("/product/" + productID)
+          })
+        }
       })
     })
   },
